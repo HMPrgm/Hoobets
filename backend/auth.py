@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
@@ -44,25 +44,44 @@ def signup_post():
 
     user = User.query.filter_by(email=email).first() # if there's a user already don't sign up
     if not password == confirmpassword:
-        return 'Passwords do not match'
+        response = {
+        "status":"error",
+        "message":"Passwords do not match"}
+        return jsonify(response)
     
     if not re.search("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$", password):
-        return 'Password does not have at least 1 number, 1 letter, and 8 characters'
+        response = {
+        "status":"error",
+        "message":"Password invalid"}
+        return jsonify(response)
 
     if not re.search("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", email):
-        return 'Invalid email'
+        response = {
+        "status":"error",
+        "message":"Invalid email"}
+        return jsonify(response)
     
     if not username or not password or not email:
-        return 'Not all fields filled out.'
+        response = {
+        "status":"error",
+        "message":"Not all fields filled out."}
+        return jsonify(response)
     
     if user:
-        return 'User with this email already exists'
+        response = {
+        "status":"error",
+        "message":"user already exists"
+        }
+        return jsonify(response)
     
     add_user(username=username, password=generate_password_hash(password), email=email)
     user = User.query.filter_by(email=email).first() # get user after signup to log in
     login_user(user)
 
-    return 'user successfully signed up'
+    response = {
+        "status":"ok"
+    }
+    return jsonify(response)
 
 @auth.route('/logout')
 @login_required
