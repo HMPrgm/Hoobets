@@ -33,13 +33,18 @@ def getEvents():
     response = [] # list of dicts
 
     for event in events:
-        dict = {}
-        dict['id'] = event.id
-        dict['active'] = 1 if True else 0
-        dict['name'] = event.name
-        dict['description'] = event.desc
-        dict['start'] = event.start
-        dict['end'] = event.end
+        dict = getEventJson(event)
         response.append(dict)
     
+    response['status'] = 'ok'
     return jsonify(response)
+
+def getEventJson(event):
+    dict = {}
+    dict['id'] = event.id
+    dict['active'] = 1 if True else 0
+    dict['name'] = event.name
+    dict['description'] = event.desc
+    dict['start'] = event.start
+    dict['end'] = event.end
+    return dict
