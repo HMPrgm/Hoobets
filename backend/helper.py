@@ -19,4 +19,5 @@ def add_event(name, desc, end, creator_id):
 def add_wager(bettor_id, amount, option_id, bet_id):
     with app.app_context:
         wager = Wager(better_id = bettor_id)
+        i = 5
 
