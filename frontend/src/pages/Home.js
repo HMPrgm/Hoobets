@@ -11,7 +11,6 @@ const Home = () => {
         })
         .then(res => {
             setBets(res.data)
-            
         })
         .catch(e=>{
             setBets([{

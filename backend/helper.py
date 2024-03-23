@@ -29,27 +29,48 @@ def add_option(id, event_id, desc, value):
         db.session.commit()
 
 def close_out_event(event_name, winning_option_desc):
-    with app.app_context():
+
+        # get event
         event = Event.query.filter_by(name=event_name).first()
         total_losing_credits = 0
-        if(event.active):
-            winning_option = Option.query.filter_by(event_id=event.id, desc=winning_option_desc).first()
-            losing_options = Option.query.filter(Option.event_id == event.id, Option.id != winning_option.id).all()
-            total_losing_credits = sum(option.value for option in losing_options)
-            losing_wagers = Wager.query.filter(Wager.event_id == event.id, Wager.option_id.in_([option.id for option in losing_options])).all()
-            winning_wagers = Wager.query.filter(Wager.event_id == event.id, Wager.option_id == winning_option.id).all()
-            for wager in winning_wagers:
-                wagering_user = wager.user
-                wager_amount = wager.amount
-                wagering_user.credits += wager_amount  # Return original bet
-                if total_losing_credits > 0:
-                    proportion = wager_amount / total_losing_credits
-                    proportionate_losers_credits = sum(option.value * proportion for option in losing_options)
-                    wagering_user.credits += proportionate_losers_credits  # Additional credits from losers
-            for wager in losing_wagers:
-                wagering_user = wager.user
-                wagering_user.credits -= wager.amount
-            event.active = False
+
+        if (not event.active):
+            return 'event not active'
+
+        # get winning option
+        winning_option = Option.query.filter_by(event_id=event.id, desc=winning_option_desc).first()
+
+        # get losing options
+        losing_options = Option.query.filter(Option.event_id == event.id, Option.id != winning_option.id).all()
+
+        #sum losing 
+        losing_wagers = []
+        for option in losing_options:
+            for wager in Wager.query.filter(Wager.option_id == option.id):
+                losing_wagers.append(wager)
+
+
+        total_losing_credits = sum(wager.amount for wager in losing_wagers) # sum total losing credits
+        
+        winning_wagers = Wager.query.filter(Wager.option_id == winning_option.id).all()
+
+        for wager in winning_wagers:
+            wagering_user = wager.bettor_id
+            wager_amount = wager.amount
+
+            wagering_user.credits += wager_amount  # Return original bet
+            
+            if total_losing_credits > 0:
+                proportion = wager_amount / total_losing_credits
+                proportionate_losers_credits = sum(option.value * proportion for option in losing_options)
+                wagering_user.credits += proportionate_losers_credits  # Additional credits from losers
+        for wager in losing_wagers:
+            wagering_user = wager.user
+            wagering_user.credits -= wager.amount
+        event.active = False
+
+        # do in app context
+        with app.app_context():
             db.session.commit()
         return total_losing_credits
 
