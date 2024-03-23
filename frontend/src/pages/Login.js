@@ -5,9 +5,9 @@ import '../styles/Login.css'
 const Login = () => {
 
     return (
-        <div className="form-main" method="POST" action="/login">
+        <div className="form-main" >
             <h2>Login</h2>
-            <form>
+            <form method="POST" action="/login">
                 <label>Username: 
                     <input type="text" id="username" name="username"/>
                 </label>
