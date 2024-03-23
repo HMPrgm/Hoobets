@@ -9,6 +9,7 @@ def add_user(username, password, email):
         user = User(email = email, credits = NEW_CREDITS, password = password, username = username)
         db.session.add(user)
         db.session.commit()
+<<<<<<< HEAD
 
 def add_event(name, desc, end, creator_id):
     with app.app_context():
@@ -21,3 +22,5 @@ def add_wager(bettor_id, amount, option_id, bet_id):
         wager = Wager(better_id = bettor_id)
         i = 5
 
+=======
+>>>>>>> 38560b1beff46b5aa8776eeae032bccae808d7e6
