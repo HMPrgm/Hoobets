@@ -14,7 +14,7 @@ def addevent():
     add_event(name=name, desc=desc, start=start, end=end)
     
 @login_required
-@main.route("/bets/<bet_title>", methods=['Post']) # gives json with event information given a title
+@main.route("/bets/<bet_title>", methods=['Post', 'Get']) # gives json with event information given a title
 def getWagerScreen(bet_title):
     print(bet_title)
 
@@ -22,7 +22,15 @@ def getWagerScreen(bet_title):
     event = Event.query.filter_by(name=bet_title).first()
     if (event):
         response = getEventJson(event)
+    
+    from models import Option
+    options = Option.query.filter_by(event_id=event.id)
 
+    optionsJson = []
+    for option in options:
+        optionsJson.append(getOptionJson(option))
+    
+    response['options'] = optionsJson
     response['status'] = 'ok'
     return jsonify(response)
 
@@ -36,7 +44,7 @@ def getEvents():
         dict = getEventJson(event)
         response.append(dict)
     
-    response['status'] = 'ok'
+    response.append({'status':'ok'})
     return jsonify(response)
 
 def getEventJson(event):
@@ -48,3 +56,8 @@ def getEventJson(event):
     dict['start'] = event.start
     dict['end'] = event.end
     return dict
+
+def getOptionJson(option):
+    dict = {}
+    dict["event_id"] = option.event_id
+    dict["desc"] = option.desc
