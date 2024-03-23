@@ -4,12 +4,15 @@ const Navbar = () => {
     return (
         <>
           <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
+            
+            <ul className="main-nav">
+              <li className="main-title">
+                <Link to="/">HooBets</Link>
               </li>
               <li>
+                <ul className="sub-nav">
                 <Link to="/profile">Profile</Link>
+                </ul>
               </li>
             </ul>
           </nav>
