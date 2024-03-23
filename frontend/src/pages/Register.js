@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios'
-import '../styles/Login.css'
 
 const Register = () => {
 
@@ -91,7 +90,7 @@ const Register = () => {
                         name="remember"
                         value={formData.remember}
                         onChange={handleChange}
-                        required/>
+                        />
                     </label>
                 </div>
                 <div className="form-line">
