@@ -18,6 +18,7 @@ function App() {
                     <Route path="login" element={<Login/>}/>
                     <Route path="register" element={<Register/>}/>
                     <Route path="default" element={<Default/>}/>
+                    <Route path="registerresult" element={<Default type="registerresult"/>}/>
                     <Route path="profile" element={<Profile user="John F. Kennedy"/>}/>
                 </Route>
             </Routes>
