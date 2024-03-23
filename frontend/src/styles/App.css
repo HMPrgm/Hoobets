@@ -20,11 +20,7 @@ ul{
   top: 0;
 }
 
-li {
-  float: left;
-  border-right:1px solid #EEDAD1;
-  border-left:1px solid #EEDAD1;
-}
+
 
 li a {
   display: block;
@@ -41,9 +37,7 @@ li a:hover {
 .nav-link {
   background-color: #383E56; /* Default background color */
   color: #fff;
-  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.8s ease; /* Transition effect for background color */
 }
