@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
+import re
 
 auth = Blueprint('main', __name__)
 
@@ -38,9 +39,19 @@ def signup_post():
     username = request.form.get('username')
     email = request.form.get('email')
     password = request.form.get('password')
+    confirmpassword = request.form.get('confirmpassword')
+
 
     user = User.query.filter_by(email=email).first() # if there's a user already don't sign up
+    if not password == confirmpassword:
+        return 'Passwords do not match'
+    
+    if not re.search("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$", password):
+        return 'Password does not have at least 1 number, 1 letter, and 8 characters'
 
+    if not re.search("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", email):
+        return 'Invalid email'
+    
     if not username or not password or not email:
         return 'Not all fields filled out.'
     
