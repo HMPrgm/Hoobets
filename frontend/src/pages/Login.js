@@ -8,6 +8,11 @@ const Login = () => {
         <div className="form-main" >
             <h2>Login</h2>
             <form method="POST" action="/login">
+            <div className="form-line">
+                    <label>Email: 
+                        <input type="text" id="email" name="email"/>
+                    </label>
+                </div>
                 <div className="form-line">
                     <label>Username: 
                         <input type="text" id="username" name="username"/>
