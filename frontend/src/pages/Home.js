@@ -59,10 +59,17 @@ const Home = () => {
     },[]);
     
     try {
+        let newBets = [];
+        for (let bet of bets)
+        {
+            if (bet.active) {
+                newBets.push(bet)
+            }
+        }
         return (
             
             
-            bets.map((bet, i) => (
+            newBets.map((bet, i) => (
                 <BetPreview bet={bet}/>
             ))
         
