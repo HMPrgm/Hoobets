@@ -1,11 +1,14 @@
 from flask import Blueprint, request
 from flask_login import login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
+import re
 
-auth = Blueprint('auth', __name__)
+auth = Blueprint('main', __name__)
 
 @auth.route('/login', methods=['Post'])
 def login_post():
+    from models import User
+
     email = request.form.get('email')
     password = request.form.get('password')
     remember = True if request.form.get('remember') else False
@@ -24,19 +27,31 @@ def login_post():
 
 
     # if this passes, login the user
-    from helper import add_user
     login_user(user, remember=remember)
 
     return 'User logged in'
 
 @auth.route('/signup', methods=['Post'])
 def signup_post():
+    from models import User
+    from helper import add_user
+
     username = request.form.get('username')
     email = request.form.get('email')
     password = request.form.get('password')
+    confirmpassword = request.form.get('confirmpassword')
+
 
     user = User.query.filter_by(email=email).first() # if there's a user already don't sign up
+    if not password == confirmpassword:
+        return 'Passwords do not match'
+    
+    if not re.search("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$", password):
+        return 'Password does not have at least 1 number, 1 letter, and 8 characters'
 
+    if not re.search("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", email):
+        return 'Invalid email'
+    
     if not username or not password or not email:
         return 'Not all fields filled out.'
     
