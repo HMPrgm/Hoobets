@@ -24,13 +24,18 @@ def login_post():
     # check if user exists first
     if not user or not check_password_hash(user.password, password):
 
-        return 'Error: Check your login details'
+        return {
+            'status':'error',
+            'message':'check login details'
+        }
 
 
     # if this passes, login the user
     login_user(user, remember=remember)
 
-    return 'User logged in'
+    return {
+        'status': 'ok',
+    }
 
 @auth.route('/signup', methods=['Post'])
 def signup_post():
@@ -56,17 +61,17 @@ def signup_post():
         "message":"Passwords do not match"}
         return jsonify(response)
     
-    if not re.search("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$", password):
-        response = {
-        "status":"error",
-        "message":"Password invalid"}
-        return jsonify(response)
+    # if not re.search("", password):
+    #     response = {
+    #     "status":"error",
+    #     "message":"Password invalid"}
+    #     return jsonify(response)
 
-    if not re.search("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", email):
-        response = {
-        "status":"error",
-        "message":"Invalid email"}
-        return jsonify(response)
+    # if not re.search("^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$", email):
+    #     response = {
+    #     "status":"error",
+    #     "message":"Invalid email"}
+    #     return jsonify(response)
     
     if not username or not password or not email:
         response = {
