@@ -2,12 +2,12 @@ import React, {useState, useEffect} from "react";
 import axios from 'axios'
 import '../styles/Login.css'
 
-const Login = () => {
+const Register = () => {
 
     return (
         <div className="form-main" >
-            <h2>Login</h2>
-            <form method="POST" action="/login">
+            <h2>Register</h2>
+            <form method="POST" action="/signup">
             <div className="form-line">
                     <label>Email: 
                         <input type="text" id="email" name="email"/>
@@ -18,7 +18,16 @@ const Login = () => {
                         <input type="password" id="password" name="password"/>
                     </label>
                 </div>
-            
+                <div className="form-line">
+                    <label>Confirm Password: 
+                        <input type="password" id="confirmpassword" name="confirmpassword"/>
+                    </label>
+                </div>
+                <div className="form-line">
+                    <label>Remember: 
+                    <input type="checkbox" id="remember" name="remember"/>
+                    </label>
+                </div>
                 <div className="form-line">
                     <input type="submit"/>
                 </div>
@@ -27,4 +36,4 @@ const Login = () => {
       )
 };
 
-export default Login;
+export default Register;
