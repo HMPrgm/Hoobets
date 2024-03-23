@@ -1,8 +1,17 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios'
 import '../styles/Login.css'
-const validate = () => {
-    
+const registerUser = () => {
+    axios.post('/bets', {
+        amount:10
+    })
+    .then(res => {
+        
+    })
+    .catch(e=>{
+        console.error(e)
+
+    })
 }
 
 const Register = () => {
@@ -37,9 +46,10 @@ const Register = () => {
                     </label>
                 </div>
                 <div className="form-line">
-                    <input type="submit"/>
+                    <input type="submit" id="remember" name="remember"/>
                 </div>
             </form>
+             
         </div>
       )
 };
