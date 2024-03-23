@@ -32,15 +32,15 @@ def create_app():
 
 
 app = create_app()
-from models import User, Event, Wager, Option
+from models import User, Event, Wager, Option, ChildView
 
 app.secret_key = 'super secret key'
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 admin = Admin(app, name='microblog', template_mode='bootstrap3')
-admin.add_view(ModelView(User, db.session))
-admin.add_view(ModelView(Event, db.session))
-admin.add_view(ModelView(Wager, db.session))
-admin.add_view(ModelView(Option, db.session))
+admin.add_view(ChildView(User, db.session))
+admin.add_view(ChildView(Event, db.session))
+admin.add_view(ChildView(Wager, db.session))
+admin.add_view(ChildView(Option, db.session))
 
 
 

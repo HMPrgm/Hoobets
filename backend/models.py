@@ -1,6 +1,7 @@
 from flask import Flask
 from app import db, app
 from flask_login import UserMixin
+from flask_admin.contrib.sqla import ModelView
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -40,8 +41,9 @@ class Option(db.Model):
     value = db.Column(db.Integer)
 
 
-
-
+class ChildView(ModelView): # child view for admin page
+    column_display_pk = True # optional, but I like to see the IDs in the list
+    column_hide_backrefs = False
 
 
 
