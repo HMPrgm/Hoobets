@@ -8,10 +8,10 @@ class User(db.Model):
     password = db.Column(db.String(100), nullable=True)
     credits = db.Column(db.Integer)
 
-    bets = db.relationship('Bet', backref='user')
+    events = db.relationship('Event', backref='user')
     wagers = db.relationship('Wager', backref='user')
 
-class Bet(db.Model):
+class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, nullable=False)
     desc = db.Column(db.String(80), unique=True, nullable=False)
@@ -20,21 +20,21 @@ class Bet(db.Model):
     active = db.Column(db.Boolean)
     creator_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-    wagers = db.relationship('Wager', backref='bet')
-    options = db.relationship('Option', backref='bet')
+    wagers = db.relationship('Wager', backref='event')
+    options = db.relationship('Option', backref='event')
 
 
 class Wager(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     amount = db.Column(db.Integer)
 
-    wager_id = db.Column(db.Integer, db.ForeignKey('bet.id'))
-    better_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    event_id = db.Column(db.Integer, db.ForeignKey('event.id'))
+    bettor_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     option_id = db.Column(db.Integer, db.ForeignKey('option.id'))
 
 class Option(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    bet_id = db.Column(db.Integer, db.ForeignKey('bet.id'))
+    event_id = db.Column(db.Integer, db.ForeignKey('event.id'))
     desc = db.Column(db.String(100))
     value = db.Column(db.Integer)
 

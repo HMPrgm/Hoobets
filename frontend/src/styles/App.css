@@ -1,3 +1,6 @@
+body {
+  margin:0
+}
 ul {
   list-style-type: none;
   margin: 0;
@@ -25,4 +28,20 @@ li a {
 
 li a:hover {
   background-color: #F69E7B;
+}
+
+.bet-element{
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.bet-element-name {
+  font-weight: 700;
+  font-size: 2em;
+}
+.bet-element-likes{
+  margin-left: 20px;
+}
+.bet-element{
+  border-bottom: solid black 1px;
 }
