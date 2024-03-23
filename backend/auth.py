@@ -1,8 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_user, logout_user, login_required
-from models import User
 from werkzeug.security import generate_password_hash, check_password_hash
-from helper import add_user
 
 auth = Blueprint('auth', __name__)
 
@@ -12,14 +10,21 @@ def login_post():
     password = request.form.get('password')
     remember = True if request.form.get('remember') else False
     
+    print(email)
+    print(password)
+    print(remember)
+    
+    from models import User
     user = User.query.filter_by(email=email).first()
 
     # check if user exists first
-    if not user() or not check_password_hash(user.password, password):
+    if not user or not check_password_hash(user.password, password):
+
         return 'Error: Check your login details'
 
 
     # if this passes, login the user
+    from helper import add_user
     login_user(user, remember=remember)
 
     return 'User logged in'

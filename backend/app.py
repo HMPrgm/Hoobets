@@ -12,6 +12,9 @@ def create_app():
     app.static_url_path="../frontend/public/templates"
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.sqlite'
 
+    from auth import auth
+    app.register_blueprint(auth)
+    
     # init db and login manager
     db.init_app(app)
     login_manger.init_app(app)
@@ -28,3 +31,4 @@ def load_user(user_id):
 
 if __name__ == "__main__":
     app.run(debug=True)
+
