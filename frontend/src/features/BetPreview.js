@@ -10,7 +10,7 @@ const BetPreview = ({bet}) => {
             </div>
             <div className="bet-element" >
                 <div className="bet-element-img bet-element-element"><img src={bet.image}></img></div>
-                <div className="bet-element-btn bet-element-element"><a href="/bets/">Bet</a></div>
+                <div className="bet-element-btn bet-element-element"><a href="/betss">Bet</a></div>
             </div>
         </div>
       )

@@ -3,15 +3,18 @@ from flask_login import login_required
 main = Blueprint('auth', __name__)
 
 @login_required
-@main.route("/addevent", methods=['Post'])
+@main.route("/addevent", methods=['Post']) #adds an event 
 def addevent():
-    name = request.form.get('name')
-    desc = request.form.get('desc')
-    start = request.form.get('start')
-    end = request.form.get('end')
+    data = request.get_json()
+    name = data['name']
+    desc = data['desc']
+    start = data['start']
+    end = data['end']
+    from helper import add_event
+    add_event(name=name, desc=desc, start=start, end=end)
     
 @login_required
-@main.route("/bets/<bet_title>", methods=['Get'])
+@main.route("/bets/<bet_title>", methods=['Post']) # gives json with event information given a title
 def getWagerScreen(bet_title):
     print(bet_title)
 
