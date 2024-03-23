@@ -9,6 +9,7 @@ class User(db.Model):
     credits = db.Column(db.Integer, unique=True)
 
     bets = db.relationship('Bets', backref='user')
+    wagers = db.relationship('Wagers', backref='user')
 
 class Bet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
