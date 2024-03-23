@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios'
 import '../styles/Login.css'
+const validate = () => {
+    
+}
 
 const Register = () => {
 
@@ -11,6 +14,11 @@ const Register = () => {
             <div className="form-line">
                     <label>Email: 
                         <input type="text" id="email" name="email"/>
+                    </label>
+                </div>
+            <div className="form-line">
+                    <label>Username:
+                        <input type="text" id="username" name="username"/>
                     </label>
                 </div>
                 <div className="form-line">
