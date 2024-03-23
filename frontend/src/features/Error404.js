@@ -1,12 +1,13 @@
 import React from "react";
 import '../styles/Default.css'
 
-const RegisterResult = (props) => {
+const Error404 = (props) => {
     try {
         console.log(props)
         return (
             <div className="center"> 
-                {props.location.state.status}
+                <h1>404</h1>
+                <p>Page not Found :(</p>
             </div>
         )
     } catch (e) 
@@ -15,4 +16,4 @@ const RegisterResult = (props) => {
     }
 };
 
-export default RegisterResult;
+export default Error404;

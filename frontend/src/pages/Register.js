@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 
 const Register = () => {
 
+    const navigate = useNavigate()
+    const [error, setError] = useState('')
     const [formData, setFormData] = useState({
         // Initialize form fields
         email: '',
@@ -20,8 +23,19 @@ const Register = () => {
       const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('/signup', formData);
-          console.log('Response:', response.data);
+            const response = await axios.post('/signup', formData);
+            console.log('Response:', response.data);
+            if( response.data.status === "error")
+            {
+                setError(response.data.message)
+            }
+            else
+            {
+                navigate({
+                    pathname: "/",
+                    state: response.data
+                })
+            }
           // Optionally, reset form fields after successful submission
           setFormData({
             email: '',
@@ -97,7 +111,7 @@ const Register = () => {
                     <input type="submit" />
                 </div>
             </form>
-             
+            {error ? <p className="text-danger">Error: {error}</p> : ""}
         </div>
       )
 };
