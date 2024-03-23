@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
+import json
 
 auth = Blueprint('main', __name__)
 
@@ -33,14 +34,20 @@ def login_post():
 
 @auth.route('/signup', methods=['Post'])
 def signup_post():
+
     from models import User
     from helper import add_user
 
-    username = request.form.get('username')
-    email = request.form.get('email')
-    password = request.form.get('password')
-    confirmpassword = request.form.get('confirmpassword')
+    data = (request.get_json())
+    print(data['email'])
+    
+    username = data['username']
+    email = data['email']
+    password = data['password']
+    confirmpassword = data['confirmpassword']
 
+
+    print(username + email + password + confirmpassword)
 
     user = User.query.filter_by(email=email).first() # if there's a user already don't sign up
     if not password == confirmpassword:
