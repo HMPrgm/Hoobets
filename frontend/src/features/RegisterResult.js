@@ -1,12 +1,12 @@
 import React from "react";
 import '../styles/Default.css'
 
-const BetPreview = ({bet}) => {
+const RegisterResult = ({bet}) => {
     return (
-        <div className=""> 
-            
+        <div className="center"> 
+            bet
         </div>
       )
 };
 
-export default BetPreview;
+export default RegisterResult;
