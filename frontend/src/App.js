@@ -4,6 +4,7 @@ import Navbar from './headerfooter/Navbar';
 import Home from './pages/Home'
 import Bet from './pages/Bet';
 import Profile from './pages/Profile';
+import Login from './pages/Login';
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
                 <Route path="/" element={<Navbar/>}>
                     <Route index element={ <Home/>} />
                     <Route path="bet" element={<Bet bet="Elizibeth Orrico Gives stickers"/>}/>
+                    <Route path="login" element={<Login/>}/>
                     <Route path="profile" element={<Profile user="John F. Kennedy"/>}/>
                 </Route>
             </Routes>
