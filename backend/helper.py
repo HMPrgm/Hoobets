@@ -8,3 +8,4 @@ def add_user(username, password, email):
         user = User(email = email, credits = NEW_CREDITS, password = password, username = username)
         db.session.add(user)
         db.session.commit()
+
