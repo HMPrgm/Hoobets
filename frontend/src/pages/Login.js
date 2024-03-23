@@ -40,9 +40,7 @@ const Login = () => {
           // Optionally, reset form fields after successful submission
           setFormData({
             email: '',
-            username: '',
             password: '',
-            confirmpassword: '',
             remember: ''
           });
         } catch (error) {
@@ -50,13 +48,14 @@ const Login = () => {
         }
       };
     return (
-        <div className="form-main" >
+        <div className="container" >
             <h2>Login</h2>
-            <form method="POST" action="/login">
+            <form method="POST" onSubmit={handleSubmit}>
             <div className="form-line">
-                    <label>Email: 
+                    <label htmlFor="email" className="form-label">Email: 
                         <input 
                         type="text"
+                        className="form-control"
                         id="email"
                         name="email"
                         value={formData.email}
@@ -65,9 +64,10 @@ const Login = () => {
                     </label>
                 </div>
                 <div className="form-line">
-                    <label>Password: 
+                    <label htmlFor="password" className="form-label">Password: 
                         <input 
                             type="password"
+                            className="form-control"
                             id="password"
                             name="password"
                             value={formData.password}
