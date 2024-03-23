@@ -14,7 +14,10 @@ def create_app():
 
     from auth import auth
     app.register_blueprint(auth)
-    
+
+    from main import main
+    app.register_blueprint(main)
+
     # init db and login manager
     db.init_app(app)
     login_manger.init_app(app)
