@@ -1,4 +1,5 @@
 import React from "react";
+import '../styles/BetPreview.css'
 
 const BetPreview = ({bet}) => {
     return (
