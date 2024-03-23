@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from models import User, Event, Wager, Option
 
 db = SQLAlchemy()
 login_manger = LoginManager()
@@ -22,7 +23,7 @@ app = create_app()
 
 @login_manger.user_loader
 def load_user(user_id):
-    return
+    return User.query.get(user_id)
 
 if __name__ == "__main__":
     app.run(debug=True)
