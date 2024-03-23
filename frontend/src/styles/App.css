@@ -1,7 +1,15 @@
 body {
-  margin:0
+  margin:0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-ul {
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+}
+.main-title{
+  font-weight: bold;
+}
+ul{
   list-style-type: none;
   margin: 0;
   padding: 0;
