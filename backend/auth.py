@@ -10,10 +10,9 @@ auth = Blueprint('main', __name__)
 def login_post():
     from models import User
 
-    data = request.get_json()
-    email = data['email']
-    password = data['password']
-    remember = data['remember']
+    email = request.form.get('email')
+    password = request.form.get('password')
+    remember = True if request.form.get('remember') else False
     
     print(email)
     print(password)

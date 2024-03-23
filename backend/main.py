@@ -31,25 +31,15 @@ def getEvents():
     from models import Event
     events = Event.query.all()
     response = [] # list of dicts
-    if not events:
-        return {
-            "status" : "error",
-            "message": "event not found"
-        }
-    
+
     for event in events:
-        getEventJson(event)
+        dict = {}
+        dict['id'] = event.id
+        dict['active'] = 1 if True else 0
+        dict['name'] = event.name
+        dict['description'] = event.desc
+        dict['start'] = event.start
+        dict['end'] = event.end
         response.append(dict)
     
-    response['status'] = 'ok'
     return jsonify(response)
-
-def getEventJson(event):
-    dict = {}
-    dict['id'] = event.id
-    dict['active'] = 1 if True else 0
-    dict['name'] = event.name
-    dict['description'] = event.desc
-    dict['start'] = event.start
-    dict['end'] = event.end
-    return dict
