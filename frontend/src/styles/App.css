@@ -38,6 +38,21 @@ li a:hover {
   background-color: #F69E7B;
 }
 
+.nav-link {
+  background-color: #383E56; /* Default background color */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.8s ease; /* Transition effect for background color */
+}
+
+/* CSS for the hover effect */
+.nav-link:hover {
+  background-color: #F69E7B; /* New background color on hover */
+}
+
 .bet-element{
   margin-bottom: 10px;
   padding: 10px;
