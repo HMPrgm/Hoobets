@@ -1,5 +1,5 @@
 from app import db, create_app
-from models import User, Event, Wager
+from models import User, Event, Wager, Option
 from datetime import datetime
 NEW_CREDITS = 50
 app = create_app()
@@ -18,6 +18,14 @@ def add_event(name, desc, end, creator_id):
 
 def add_wager(bettor_id, amount, option_id, bet_id):
     with app.app_context:
-        wager = Wager(better_id = bettor_id)
-        i = 5
+        wager = Wager(bettor_id = bettor_id, amount = amount, option_id = option_id, bet_id = bet_id)
+        db.session.add(wager)
+        db.session.commit()
+
+def add_option(id, event_id, desc, value):
+    with app.app_context:
+        option = Option(id = id, event_id = event_id, desc = desc, value = value)
+        db.session.add(option)
+        db.session.commit()
+        
 
