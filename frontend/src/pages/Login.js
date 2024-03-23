@@ -63,7 +63,7 @@ const Login = () => {
                         required/>
                     </label>
                 </div>
-                <div className="form-line">
+                <div >
                     <label htmlFor="password" className="form-label">Password: 
                         <input 
                             type="password"
@@ -75,7 +75,7 @@ const Login = () => {
                             required/>
                     </label>
                 </div>
-                <div className="form-line">
+                <div >
                     <label>Remember: 
                     <input 
                         type="checkbox"
