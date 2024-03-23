@@ -14,7 +14,6 @@ function App() {
             <Routes>
                 <Route path="/" element={<Navbar/>}>
                     <Route index element={ <Home/>} />
-                    <Route path="bet" element={<Bet bet="Elizibeth Orrico Gives stickers"/>}/>
                     <Route path="login" element={<Login/>}/>
                     <Route path="register" element={<Register/>}/>
                     <Route path="default" element={<Default/>}/>
