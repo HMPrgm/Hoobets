@@ -10,10 +10,10 @@ def add_user(username, password, email):
         db.session.add(user)
         db.session.commit()
 
-def add_bet(name, desc, end, creator_id):
+def add_event(name, desc, end, creator_id):
     with app.app_context():
-        bet = Bet(name = name, desc = desc, start = datetime.now, end = end, active = True, creator_id = creator_id)
-        db.session.add(bet)
+        event = Event(name = name, desc = desc, start = datetime.now, end = end, active = True, creator_id = creator_id)
+        db.session.add(event)
         db.session.commit()
 
 def add_wager(bettor_id, amount, option_id, bet_id):
