@@ -18,7 +18,8 @@ function App() {
                     <Route path="register" element={<Register/>}/>
                     <Route path="default" element={<Default/>}/>
                     <Route path="profile" element={<Profile user="John F. Kennedy"/>}/>
-                    <Route path="*" element={<Default type="error404" result="John F. Kennedy"/>}/>
+                    
+                    {/* <Route path="*" element={<Default type="error404" result="John F. Kennedy"/>}/> */}
                 </Route>
             </Routes>
         </BrowserRouter>

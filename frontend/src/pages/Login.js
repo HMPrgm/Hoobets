@@ -76,10 +76,11 @@ const Login = () => {
                     </label>
                 </div>
                 <div >
-                    <label>Remember: 
+                    <label htmlFor="remember" className="form-check-label">Remember: 
                     <input 
                         type="checkbox"
                         id="remember"
+                        className="form-check-input"
                         name="remember"
                         value={formData.remember}
                         onChange={handleChange}
