@@ -5,15 +5,22 @@ import '../styles/Login.css'
 const Login = () => {
 
     return (
-        <div className="form-main" method="POST" action="/login">
-            <form>
-                <label>Username: 
-                    <input type="text" id="username" name="username"/>
-                </label>
-                <label>Password: 
-                    <input type="text" id="password" name="password"/>
-                </label>
-                <input type="submit"/>
+        <div className="form-main" >
+            <h2>Login</h2>
+            <form method="POST" action="/login">
+                <div className="form-line">
+                    <label>Username: 
+                        <input type="text" id="username" name="username"/>
+                    </label>
+                </div>
+                <div className="form-line">
+                    <label>Password: 
+                        <input type="password" id="password" name="password"/>
+                    </label>
+                </div>
+                <div className="form-line">
+                    <input type="submit"/>
+                </div>
             </form>
         </div>
       )
