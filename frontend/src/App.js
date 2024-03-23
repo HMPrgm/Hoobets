@@ -6,6 +6,7 @@ import Bet from './pages/Bet';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Default from './pages/Default';
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                     <Route path="bet" element={<Bet bet="Elizibeth Orrico Gives stickers"/>}/>
                     <Route path="login" element={<Login/>}/>
                     <Route path="register" element={<Register/>}/>
+                    <Route path="default" element={<Default/>}/>
                     <Route path="profile" element={<Profile user="John F. Kennedy"/>}/>
                 </Route>
             </Routes>
