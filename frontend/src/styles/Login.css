@@ -1,0 +1,9 @@
+.form-main {
+    margin: auto;
+    width: 50%;
+    border-radius: 10px;
+    background-color: whitesmoke;
+  }
+.form-main form{
+    padding: 50px;
+}
