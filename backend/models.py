@@ -8,6 +8,8 @@ class User(db.Model):
     password = db.Column(db.String(100), nullable=True)
     credits = db.Column(db.Integer, unique=True)
 
+    bets = db.relationship('Bets', backref='user')
+
 class Bet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, nullable=False)
