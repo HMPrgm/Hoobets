@@ -25,8 +25,8 @@ def giveData():
     }
     return jsonify(data)
 
-@app.route('/articles')
-def articles():
+@app.route('/bets')
+def bets():
     data = [
         {
             "name":"Richmond",
