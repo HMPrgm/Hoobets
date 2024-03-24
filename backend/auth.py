@@ -102,9 +102,17 @@ def signup_post():
 def isloggedin():
     from models import User
     print((current_user.is_authenticated))
-    return {
-        'isloggedin': 1 if current_user.is_authenticated else 0
-    }
+    
+    if current_user.is_authenticated:
+        return {
+        'isloggedin': 1 if current_user.is_authenticated else 0,
+        "name": current_user.username
+        }
+    else:
+        return {
+            "isloggedin" : 0,
+        }
+    
 
 @auth.route('/logout', methods=['Post', 'Get'])
 @login_required

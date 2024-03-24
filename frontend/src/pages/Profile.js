@@ -6,6 +6,7 @@ const Profile = () => {
   const [username, setUsername] = useState('')
   const [bets, setBet] = useState('')
 
+  axios.get('user')
   return (
     <div className="container">
       <div className="row">
