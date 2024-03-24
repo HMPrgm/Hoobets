@@ -15,11 +15,7 @@ def add_event(name, desc, creator_id, pivot):
         event = Event(name = name, desc = desc, active = True, creator_id = creator_id, pivot=pivot)
         id = event.id
         db.session.add(event)
-
-        add_option(event_id=id, desc='higher', value=1)
-        add_option(event_id=id, desc='lower', value=-1)
-
-       
+        
         db.session.commit()
         return id
 
