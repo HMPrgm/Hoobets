@@ -48,7 +48,8 @@ const Login = () => {
         }
       };
     return (
-        <div className="container" >
+        <div className="d-flex flex-column p-5 justify-content-center bg-light p-1 mt-4 rounded" style={{width: "max-content", marginRight:"auto", marginLeft:"auto"}} >
+
             <h2>Login</h2>
             <form method="POST" onSubmit={handleSubmit}>
             <div className="form-line">
@@ -56,6 +57,7 @@ const Login = () => {
                         <input 
                         type="text"
                         className="form-control"
+                        style = {{paddingRight: 100}}
                         id="email"
                         name="email"
                         value={formData.email}
@@ -70,25 +72,31 @@ const Login = () => {
                             className="form-control"
                             id="password"
                             name="password"
+                            style = {{paddingRight: 100}}
                             value={formData.password}
                             onChange={handleChange}
                             required/>
                     </label>
                 </div>
                 <div >
-                    <label htmlFor="remember" className="form-check-label">Remember: 
+                    <label htmlFor="remember" className="form-check-label"
+                    style={{marginRight: 10}}
+                    >Remember:                     </label>
+
                     <input 
                         type="checkbox"
                         id="remember"
-                        className="form-check-input"
+                        className="form-check-input mb-2"
                         name="remember"
                         value={formData.remember}
                         onChange={handleChange}
                         />
-                    </label>
                 </div>
                 <div className="form-line">
-                    <input type="submit"/>
+                    <input 
+                    className="btn btn-primary"
+                    
+                    type="submit"/>
                 </div>
             </form>
             {error ? <p className="text-danger">Error: {error}</p> : ""}
