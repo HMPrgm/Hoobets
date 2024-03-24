@@ -16,6 +16,7 @@ function App() {
                     <Route index element={ <Home/>} />
                     <Route path="login" element={<Login/>}/>
                     <Route path="register" element={<Register/>}/>
+                    <Route path="bets/:name" element={<Bet/>}/>
                     <Route path="default" element={<Default/>}/>
                     <Route path="profile" element={<Profile user="John F. Kennedy"/>}/>
                     
