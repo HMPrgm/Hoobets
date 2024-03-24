@@ -32,7 +32,7 @@ const Bet = () => {
     axios.post(`/addwager`, {
       "highlow": e.target.innerText === "Lower" ? -1:1,
       "name":name,
-      "amount":20
+      "amount":betAmount
     })
       .then(res => {
         console.log(res.data)
@@ -50,13 +50,14 @@ const Bet = () => {
         <div className="col-6">
           <div className="card">
             <div className="card-body">
-              <h2 className="card-title text-center">{bet.name}</h2>
-              <p className="card-text">{bet.description}</p>
-              <div className="text-center">
-                s
-              </div>
-              <p className="card-text">Odds: {bet.id}</p>
-              <div className="form-group">
+              <h2 className="card-title text-center fs-2">{bet.name}</h2>
+              <p className="card-text text-muted">{bet.description}</p>
+              
+              <p className="card-text fs-4 text-center">Number to beat: <span className=" fw-bold">{bet.pivot}</span></p>
+              <div className="form-group p-3">
+              <div className="row">
+              <label className="form-label col-sm-3 text-center p-1">Bet Tokens: </label>
+              <div className="col-lg-8">
                 <input
                   type="number"
                   className="form-control"
@@ -65,8 +66,12 @@ const Bet = () => {
                   onChange={handleBetChange}
                 />
               </div>
-              <button className="btn btn-success" onClick={handlePlaceBet}>Higher</button>
-              <button className="btn btn-warning" onClick={handlePlaceBet}>Lower</button>
+              </div>
+              </div>
+              <div className="text-center d-flex justify-content-around">
+                <button className="btn btn-lg btn-success" onClick={handlePlaceBet}>Higher</button>
+                <button className="btn btn-lg btn-danger" onClick={handlePlaceBet}>Lower</button>
+              </div>
             </div>
           </div>
         </div>
