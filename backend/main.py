@@ -13,6 +13,13 @@ def addwager():
     amount = data['amount']
     event_id = Event.query.filter_by(name=name).first().id
 
+    if not event_id:
+        return {
+            "status":"error",
+            "message":"event not found"
+        }
+    
+
     if highlow == 1 :
         option_id = Option.query.filter_by(value=1).first().id
     else: 
@@ -96,7 +103,6 @@ def getEvents():
 
 @main.route("/profile/<username>")
 def getUser(username):
-    print(username)
     from models import User, Wager
     user = User.query.filter_by(username=username).first()
     response = []
@@ -107,7 +113,8 @@ def getUser(username):
             'message':'user does not exist'
         }
     
-    wagers = Wager.query.filter_by(bettor_id = user.id)
+    wagers = Wager.query.filter_by(bettor_id = user.id).all()
+    print(wagers)
     for wager in wagers:
         response.append(getWagerJson(wager))
     
@@ -118,6 +125,7 @@ def getWagerJson(wager):
     from models import Event, Option
     dict = {}
     event_id = wager.event_id
+    print(wager)
     print(event_id)
     event = Event.query.filter_by(id = event_id).first()
 
