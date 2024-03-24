@@ -1,6 +1,9 @@
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({isLoggedIn, handleLoggedIn}) => {
+  
   return (
     <>
       <nav class="p-3 navbar navbar-expand-lg navbar-light bg-light justify-content-between">
@@ -9,16 +12,20 @@ const Navbar = () => {
           <span class="navbar-toggler-icon"></span>
         </button>
         <ul class="navbar-nav nav-light">
-          
-          <li class="nav-item active">
-            <Link to="/logout" className="nav-link">Logout</Link>
-          </li>
-          <li class="nav-item active">
-            <Link to="/register" className="nav-link">Register</Link>
-          </li>
-          <li class="nav-item active">
-            <Link to="/login" className="nav-link">Login</Link>
-          </li>
+          {isLoggedIn ?
+            <li class="nav-item active">
+              <Link to="/logout" className="nav-link">Logout</Link>
+            </li>
+            :
+            <>
+              <li class="nav-item active">
+                <Link to="/login" className="nav-link">Login</Link>
+              </li>
+              <li class="nav-item active">
+                <Link to="/register" className="nav-link">Register</Link>
+              </li>
+            </>
+          }
         </ul>
       </nav>
       <Outlet />

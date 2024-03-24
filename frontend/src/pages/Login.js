@@ -5,7 +5,7 @@ import axios from 'axios'
 
 
 
-const Login = () => {
+const Login = ({handleLoggedIn}) => {
 
     const navigate = useNavigate()
     const [error, setError] = useState('')
@@ -32,6 +32,7 @@ const Login = () => {
             }
             else
             {
+                handleLoggedIn()
                 navigate({
                     pathname: "/",
                     state: response.data
