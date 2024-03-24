@@ -20,7 +20,7 @@ const BetPreview = ({ bet, loggedIn }) => {
                 <p className="card-text"><strong>Start Date:</strong> {new Date(bet.start).toLocaleString()}</p>
                 <p className="card-text"><strong>End Date:</strong> {new Date(bet.end).toLocaleString()}</p>
                 { loggedIn ?
-                <p className="card-text"><a className="btn" href={"/bets/" + bet.name}>{bet.active ? 'Bet': 'Results'}</a></p> : ""
+                <p className="card-text"><a className="btn btn-dark btn-lg" href={"/bets/" + bet.name}>{bet.active ? 'Bet': 'Results'}</a></p> : ""
 }
             </div>
         </div>
