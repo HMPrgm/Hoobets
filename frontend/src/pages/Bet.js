@@ -47,7 +47,17 @@ const Bet = ({ handleLoggedIn, credits, username }) => {
 
   const handleBetChange = (e) => {
     // Place bet logic here
-    setBetAmount(Math.min(Math.max(parseInt(e.target.value), 1)), credits);
+    if (e.target.value>credits)
+    {
+      setBetAmount(credits)
+    }
+    else if (e.target.value<= 0)
+    {
+      setBetAmount(1)
+    }
+    else {
+      setBetAmount(parseInt(e.target.value));
+    }
 
   };
   const handlePlaceBet = (e) => {
