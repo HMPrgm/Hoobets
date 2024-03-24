@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 
-const Navbar = ({isLoggedIn, handleLoggedIn}) => {
+const Navbar = ({isLoggedIn, username, handleLoggedIn}) => {
   
   return (
     <>
@@ -18,7 +18,7 @@ const Navbar = ({isLoggedIn, handleLoggedIn}) => {
               <Link to="/logout" className="nav-link">Logout</Link>
             </li>
             <li>
-              <Link to="/profile" className="nav-link">Profile</Link>
+              <Link to={"/profile/"+username} className="nav-link">Profile</Link>
             </li>
             </>
 
