@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 
-const Register = () => {
+const Register = ({handleLoggedIn}) => {
 
     const navigate = useNavigate()
     const [error, setError] = useState('')
@@ -31,6 +31,7 @@ const Register = () => {
             }
             else
             {
+                handleLoggedIn()
                 navigate({
                     pathname: "/",
                     state: response.data
