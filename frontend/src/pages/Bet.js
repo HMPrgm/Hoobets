@@ -47,10 +47,7 @@ const Bet = ({ handleLoggedIn, credits, username }) => {
 
   const handleBetChange = (e) => {
     // Place bet logic here
-    if (credits === 0)
-    {
-      setBetAmount(0)
-    }
+    
     if (e.target.value>credits)
     {
       setBetAmount(credits)
@@ -61,6 +58,10 @@ const Bet = ({ handleLoggedIn, credits, username }) => {
     }
     else {
       setBetAmount(parseInt(e.target.value));
+    }
+    if (credits === 0)
+    {
+      setBetAmount(0)
     }
 
   };
