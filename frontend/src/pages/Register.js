@@ -140,8 +140,8 @@ const Register = ({ handleLoggedIn }) => {
                     type="text"
                     className="form-control"
                     style = {{paddingRight: 100}}
-                    id="email"
-                    name="email"
+                    id="username"
+                    name="username"
                     value={formData.username}
                     onChange={handleChange}
                     required/>
