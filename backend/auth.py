@@ -98,8 +98,10 @@ def signup_post():
     }
     return jsonify(response)
 
-@auth.route('/logout')
+@auth.route('/logout', methods=['Post'])
 @login_required
 def logout():
     logout_user()
-    return 'user logged out'
+    return {
+        "status":"ok"
+    }
