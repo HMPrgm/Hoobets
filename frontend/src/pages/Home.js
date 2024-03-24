@@ -60,16 +60,18 @@ const Home = ({loggedIn}) => {
     try {
         let newBets = [];
         let oldBets = [];
-        for (let bet of bets) {
-            console.log(bet)
-            if (bet.active) {
-                newBets.push(bet)
+        for (let i = 0; i < bets.length - 1; i++) {
+            if (bets[i].active) {
+                newBets.push(bets[i])
             }
             else
             {
-                oldBets.push(bet)
+                oldBets.push(bets[i])
             }
         }
+        console.log(bets)
+        console.log(oldBets)
+
         return (
 
 
