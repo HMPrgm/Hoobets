@@ -13,9 +13,6 @@ def create_app():
     app = Flask(__name__)
     
 
-
-
-
     app.static_url_path="../frontend/public/templates"
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.sqlite'
 
@@ -35,8 +32,12 @@ app = create_app()
 from models import User, Event, Wager, Option, ChildView
 
 app.secret_key = 'super secret key'
+
+# configure admin dashboards
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 admin = Admin(app, name='microblog', template_mode='bootstrap3')
+
+
 admin.add_view(ChildView(User, db.session))
 admin.add_view(ChildView(Event, db.session))
 admin.add_view(ChildView(Wager, db.session))

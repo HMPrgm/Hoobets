@@ -6,7 +6,7 @@ import json
 
 auth = Blueprint('main', __name__)
 
-@auth.route('/login', methods=['Post'])
+@auth.route('/login', methods=['Post']) # the login method
 def login_post():
     from models import User
 
@@ -38,6 +38,7 @@ def login_post():
         'status': 'ok',
     }
 
+
 @auth.route('/signup', methods=['Post'])
 def signup_post():
 
@@ -62,6 +63,7 @@ def signup_post():
         "message":"Passwords do not match"}
         return jsonify(response)
     
+    # email + password validation: to fix
     # if not re.search("", password):
     #     response = {
     #     "status":"error",
@@ -89,7 +91,7 @@ def signup_post():
     
     add_user(username=username, password=generate_password_hash(password), email=email)
     user = User.query.filter_by(email=email).first() # get user after signup to log in
-    login_user(user)
+    login_user(user) # login the user after they signup
 
     response = {
         "status":"ok"
