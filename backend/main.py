@@ -13,7 +13,12 @@ def getpastbetinfo():
     name = data['name']
     
     event = Event.query.filter_by(name=name)
-
+    if (event.active):
+        return {
+            'status':'error',
+            'message':'tried to get past info on active bet'
+        }
+    
     actual = event.actual
     highlow= get_highlow(name)
     response = sum_tokens(name, highlow)
