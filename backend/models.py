@@ -22,6 +22,8 @@ class Event(db.Model):
     end = db.Column(db.DateTime)
     pivot = db.Column(db.Integer)
 
+    result = db.Column(db.Integer, nullable=True)
+
     active = db.Column(db.Boolean)
     creator_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
