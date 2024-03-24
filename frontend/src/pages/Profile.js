@@ -45,12 +45,12 @@ const Profile = ({ credits }) => {
               {betsActive.map((bet, index) => (
                 <li key={index} className="list-group bet-group m-4" style={{
                   border: '1px solid rgba(0,0,0,.2)',
-                  backgroundColor:'red'
+                  backgroundColor: 'rgba(232, 232, 240,.5)'
                 }}>
                   <h2 className="card-title text-center">{bet.event.name}</h2>
                   <p className="card-text text-center">Credit Wager: {bet.amount}</p>
                   <p className="card-text text-center text-muted">{bet.event.description}</p>
-                  <p className="card-text text-center text-muted">Option Selected: {bet.option.desc}</p>                
+                  <p className="card-text text-center text-muted">Option Selected: {bet.option.desc}</p>
                   <p className="card-text text-center"><strong>End Date:</strong> {new Date(bet.event.end).toLocaleString()}</p>
                   <div className='text-center'><Link to={"/bets/" + bet.event.name} className="btn btn-primary text-center">See Event</Link></div>
                 </li>
@@ -59,10 +59,16 @@ const Profile = ({ credits }) => {
             <ul className="list-group">
               {betsInActive.length ? <h3 className='text-muted fw-normal' style={{ fontSize: '1.1em' }}>Past Bets</h3> : ""}
               {betsInActive.map((bet, index) => (
-                <li key={index} className="list-group-item bet-group">
-                  <div><strong>{bet.event.name}</strong> - {bet.event.description}: {bet.amount} tokens</div>
-                  <div>Option selected: {bet.option.desc}</div>
-                  <div><Link to={"/bets/" + bet.event.name} className="btn btn-primary">See Event</Link></div>
+                <li key={index} className="list-group bet-group m-4" style={{
+                  border: '1px solid rgba(0,0,0,.2)',
+                  backgroundColor: 'rgba(232, 232, 240,.5)'
+                }}>
+                  <h2 className="card-title text-center">{bet.event.name}</h2>
+                  <p className="card-text text-center">Credit Wager: {bet.amount}</p>
+                  <p className="card-text text-center text-muted">{bet.event.description}</p>
+                  <p className="card-text text-center text-muted">Option Selected: {bet.option.desc}</p>
+                  <p className="card-text text-center"><strong>End Date:</strong> {new Date(bet.event.end).toLocaleString()}</p>
+                  <div className='text-center'><Link to={"/bets/" + bet.event.name} className="btn btn-primary text-center">See Event</Link></div>
                 </li>
               ))}
             </ul>
