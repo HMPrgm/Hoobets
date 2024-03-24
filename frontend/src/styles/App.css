@@ -21,6 +21,9 @@ nav {
   background-color: whitesmoke;
 }
 
+.nav-link {
+  font-size: 15pt;
+}
 .bet-group {
   margin: 1rem;
   padding: 1rem;
