@@ -10,11 +10,18 @@ def add_user(username, password, email):
         db.session.add(user)
         db.session.commit()
 
-def add_event(name, desc, end, creator_id, pivot):
+def add_event(name, desc, creator_id, pivot):
     with app.app_context():
-        event = Event(name = name, desc = desc, start = datetime.now, end = end, active = True, creator_id = creator_id, pivot=pivot)
+        event = Event(name = name, desc = desc, active = True, creator_id = creator_id, pivot=pivot)
+        id = event.id
         db.session.add(event)
+
+        add_option(event_id=id, desc='higher', value=1)
+        add_option(event_id=id, desc='lower', value=-1)
+
+       
         db.session.commit()
+        return id
 
 def add_wager(bettor_id, amount, option_id, bet_id):
     with app.app_context():
