@@ -3,9 +3,13 @@ body {
   font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-nav {
+nav{
   background-color: #383E56 !important;
  
+}
+.btn-dark, .btn-secondary,.btn-primary {
+  background-color: #383E56 !important;
+  border-color: #383E56 !important;
 }
 
 .text-primary-1, .nav-link {
