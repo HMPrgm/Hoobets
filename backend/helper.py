@@ -89,4 +89,10 @@ def close_out_event(event_name, highlow):
 
     
 if __name__ == '__main__':
-    close_out_event('How many celsius', 1)
+    name = input('Name: ')
+    highlow = input("highlow: ")
+
+    print(name)
+    print(highlow)
+
+    close_out_event(name, int(highlow))
