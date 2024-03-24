@@ -55,6 +55,7 @@ def getEvents():
 
 @main.route("/profile/<username>")
 def getUser(username):
+    print(username)
     from models import User, Wager
     user = User.query.filter_by(username=username).first()
     response = []

@@ -14,11 +14,13 @@ function App() {
 
 
     const [loggedIn, setLoggedIn] = useState(0)
+    const [username, setUsername] = useState(0)
     useEffect(() => {
 
         axios.get('/isloggedin')
         .then(res => {
             setLoggedIn(res.data.isloggedin)
+            setUsername(res.data.isloggedin ? res.data.name :"")
         })
         .catch(e => {
             console.error(e)
@@ -29,6 +31,7 @@ function App() {
         axios.get('/isloggedin')
         .then(res => {
             setLoggedIn(res.data.isloggedin)
+            setUsername(res.data.isloggedin ? res.data.name :"")
         })
         .catch(e => {
             console.error(e)
@@ -38,14 +41,14 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Navbar handleLoggedIn={HandleLoggedIn} isLoggedIn={loggedIn} />}>
+                <Route path="/" element={<Navbar handleLoggedIn={HandleLoggedIn} username={username} isLoggedIn={loggedIn} />}>
                     <Route index element={ <Home/>} />
                     <Route path="login" element={<Login handleLoggedIn={HandleLoggedIn}/>}/>
                     <Route path="logout" element={<Logout handleLoggedIn={HandleLoggedIn}/>}/>
                     <Route path="register" element={<Register handleLoggedIn={HandleLoggedIn}/>}/>
                     <Route path="bets/:name" element={<Bet/>}/>
                     <Route path="default" element={<Default/>}/>
-                    <Route path="profile" element={<Profile user="John F. Kennedy"/>}/>
+                    <Route path="profile/:username" element={<Profile/>}/>
                     
                     {/* <Route path="*" element={<Default type="error404" result="John F. Kennedy"/>}/> */}
                 </Route>
