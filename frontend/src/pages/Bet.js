@@ -4,7 +4,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 const Bet = ({ handleLoggedIn, credits, username }) => {
 
-  const navigate = useNavigate()
   const [bet, setBet] = React.useState(0)
   const [placedBet, setPlacedBet] = React.useState(0)
   const [typeBet, setTypeBet] = React.useState('')
@@ -21,6 +20,24 @@ const Bet = ({ handleLoggedIn, credits, username }) => {
       })
   }, [name]);
 
+
+
+  const [bet2, setBet2] = useState(0)
+
+  useEffect(() => {
+
+    axios.post(`/getpastbetinfo`,
+      {
+        "name": name
+      })
+      .then(res => {
+        console.log(res.data)
+        setBet2(res.data)
+      })
+      .catch(e => {
+        console.error(e)
+      })
+  }, [name]);
 
   // const handleBetChange = (e) => {
   //   setBet(parseInt(e.target.value));
@@ -90,8 +107,9 @@ const Bet = ({ handleLoggedIn, credits, username }) => {
                       <button className="btn btn-lg btn-danger" onClick={handlePlaceBet}>Lower</button>
                     </div>
                   </>) : (true ?
+
                     <>
-                      <p className="card-text fs-4 text-center">{bet.highlow === 1 ? "Higher":"Lower"} <span className=" fw-bold">{bet.actual}</span></p>
+                      <p className="card-text fs-4 text-center">{bet2.highlow === 1 ? "Higher" : "Lower"} <span className=" fw-bold">{bet2.actual}</span></p>
                     </>
                     : "")
               }
