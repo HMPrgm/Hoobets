@@ -2,3 +2,4 @@
 /backend/__pycache__
 /frontend/node_modules
 /backend/instance/test.sqlite
+backend/instance/test.sqlite
