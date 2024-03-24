@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import { useParams } from "react-router-dom";
 
-const Bet = () => {
+const Bet = ({handleLoggedIn, credits}) => {
   const [bet, setBet] = React.useState(0)
   const [betAmount, setBetAmount] = React.useState('')
   const { name } = useParams()
@@ -24,7 +24,7 @@ const Bet = () => {
 
   const handleBetChange = (e) => {
     // Place bet logic here
-    setBetAmount(Math.max(parseInt(e.target.value), 0));
+    setBetAmount(Math.min(Math.max(parseInt(e.target.value), 1)), credits);
     
   };
   const handlePlaceBet = (e) => {
@@ -47,7 +47,7 @@ const Bet = () => {
     <div className="container">
       <div className="row">
         <div className="col"></div>
-        <div className="col-6">
+        <div className="col-6  m-5">
           <div className="card">
             <div className="card-body">
               <h2 className="card-title text-center fs-2">{bet.name}</h2>
