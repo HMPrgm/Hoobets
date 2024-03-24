@@ -95,7 +95,7 @@ const Login = ({handleLoggedIn}) => {
                 </div>
                 <div className="form-line">
                     <input 
-                    className="btn btn-primary"
+                    className="btn btn-secondary"
                     
                     type="submit"/>
                 </div>
