@@ -18,5 +18,11 @@ nav {
 }
 
 .card {
-  background-color: whitesmoke  ;
+  background-color: whitesmoke;
+}
+
+.bet-group {
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
 }

@@ -45,7 +45,7 @@ const Profile = ({credits}) => {
             <ul className="list-group">
             {betsActive.length ? <h3 className='text-muted fw-normal' style={{fontSize: '1.1em'}}>Active Bets</h3>: ""}
               {betsActive.map((bet, index) => (
-                <li key={index} className="list-group-item">
+                <li key={index} className="list-group-item bet-group">
                   <div><strong>{bet.event.name}</strong> - {bet.event.description}: {bet.amount} tokens</div>
                   <div>Option selected: {bet.option.desc}</div>
                   <div><Link to={"/bets/" +bet.event.name }className="btn btn-primary">See Event</Link></div>
@@ -55,7 +55,7 @@ const Profile = ({credits}) => {
             <ul className="list-group">
             {betsInActive.length ? <h3 className='text-muted fw-normal' style={{fontSize: '1.1em'}}>Past Bets</h3>: ""}
               {betsInActive.map((bet, index) => (
-                <li key={index} className="list-group-item">
+                <li key={index} className="list-group-item bet-group">
                   <div><strong>{bet.event.name}</strong> - {bet.event.description}: {bet.amount} tokens</div>
                   <div>Option selected: {bet.option.desc}</div>
                   <div><Link to={"/bets/" +bet.event.name }className="btn btn-primary">See Event</Link></div>
