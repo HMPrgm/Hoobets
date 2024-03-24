@@ -1,26 +1,38 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 main = Blueprint('main', __name__)
-
+from app import db
 
 
 @main.route("/addwager", methods=['Post'])
 def addwager():
-    from models import Event, Option
+    from models import Event, Option, User
     data = request.get_json()
     name = data['name']
     highlow = data['highlow']
     amount = data['amount']
     event_id = Event.query.filter_by(name=name).first().id
-    print(highlow)
 
     if highlow == 1 :
         option_id = Option.query.filter_by(value=1).first().id
     else: 
         option_id = Option.query.filter_by(value=-1).first().id
 
-    print(option_id)
+    user = User.query.filter_by(id=current_user.id).first()
+
+    #check if user has enough credits
+    if (amount > user.credits):
+        return {
+            "status":"error",
+            "message":"not enough credits"
+        }
     
+    # subtract credits from total amount
+    user.credits -= amount
+
+    db.session.add(user)
+    db.session.commit()
+
     from helper import add_wager
     add_wager(bettor_id=current_user.id, amount=amount, option_id=option_id, bet_id=event_id)
 
