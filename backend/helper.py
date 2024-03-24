@@ -49,15 +49,12 @@ def close_out_event(event_name, highlow):
             else:
                 losing_sum_tokens += wager.amount
         
-        print(winning_sum_tokens)
-        print(losing_sum_tokens)
         
         for wager in wagers:
             # get option
             option = Option.query.filter_by(id=wager.option_id).first()
             if option.value == highlow:
                 event = Event.query.filter_by(id=wager.event_id).first()
-                print(event.active)
 
                 if not event.active:
                     print('event inactive')
@@ -74,25 +71,36 @@ def close_out_event(event_name, highlow):
 
                 # add credits based off proportion of winning pot
                 user.credits += int(losing_sum_tokens * proportion)
-
-                event.active= False
                 db.session.add(user)
-                db.session.add(event)
-
                 db.session.commit()
             else:
                 # nothing happens, loser loses their bet
                 pass
 
+        event.active= False
+        db.session.add(event)
+        db.session.commit()
 
+          
 
+def sum_tokens(event_name, highlow):
+        # get all wagers for the bet
+        event_id = Event.query.filter_by(name=event_name).first().id
+        wagers = Wager.query.filter_by(event_id=event_id).all()
 
-    
-if __name__ == '__main__':
-    name = input('Name: ')
-    highlow = input("highlow: ")
+        winning_sum_tokens = 0
+        losing_sum_tokens = 0
 
-    print(name)
-    print(highlow)
+        for wager in wagers:
+            # get option
+            option = Option.query.filter_by(id=wager.option_id).first()
+            if option.value == highlow:
+                winning_sum_tokens += wager.amount
+            else:
+                losing_sum_tokens += wager.amount
 
-    close_out_event(name, int(highlow))
+            return {
+                "winning": winning_sum_tokens,
+                "losing": losing_sum_tokens
+            }
+

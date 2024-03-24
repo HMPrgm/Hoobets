@@ -4,6 +4,17 @@ main = Blueprint('main', __name__)
 from app import db
 
 
+@main.route('/getpastbetinfo', methods=['Post'])
+def getpastbetinfo():
+    from helper import sum_tokens
+    from models import Event
+    data = request.get_json()
+    name = data['name']
+    
+    tokens = sum_tokens(name, highlow)
+    return tokens
+
+
 @main.route("/addwager", methods=['Post'])
 def addwager():
     from models import Event, Option, User
