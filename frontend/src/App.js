@@ -46,7 +46,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Navbar handleLoggedIn={HandleLoggedIn} username={username} isLoggedIn={loggedIn} credits={credits} />}>
-                    <Route index element={ <Home/>} />
+                    <Route index element={ <Home loggedIn={loggedIn} />}/>
                     <Route path="login" element={<Login handleLoggedIn={HandleLoggedIn}/>}/>
                     <Route path="logout" element={<Logout handleLoggedIn={HandleLoggedIn}/>}/>
                     <Route path="register" element={<Register handleLoggedIn={HandleLoggedIn}/>}/>

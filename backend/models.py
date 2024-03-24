@@ -7,7 +7,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(500), nullable=True)
+    password = db.Column(db.String(100), nullable=True)
     credits = db.Column(db.Integer)
 
     events = db.relationship('Event', backref='user')
