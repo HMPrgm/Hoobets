@@ -18,6 +18,7 @@ function App() {
                     <Route path="login" element={<Login/>}/>
                     <Route path="logout" element={<Logout/>}/>
                     <Route path="register" element={<Register/>}/>
+                    <Route path="bets/:name" element={<Bet/>}/>
                     <Route path="default" element={<Default/>}/>
                     <Route path="profile" element={<Profile user="John F. Kennedy"/>}/>
                     
