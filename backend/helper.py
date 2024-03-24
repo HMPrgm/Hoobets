@@ -89,4 +89,4 @@ def close_out_event(event_name, highlow):
 
     
 if __name__ == '__main__':
-    close_out_event('a cool event', 1)
+    close_out_event('event1', 1)
