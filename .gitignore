@@ -1,6 +1,3 @@
 /backend/venv
 /backend/__pycache__
 /frontend/node_modules
-/backend/instance/test.sqlite
-/backend/instance
-backend/instance/test.sqlite
