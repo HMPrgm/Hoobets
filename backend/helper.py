@@ -104,3 +104,20 @@ def sum_tokens(event_name, highlow):
                 "losing": losing_sum_tokens
             }
 
+def get_highlow(event_name, actual):
+
+    event = Event.query.filter_by(name=event_name).first()
+
+    if event.active:
+        return {
+        'status':'error',
+        'message':"tried to get info on active bet"
+    }
+
+    pivot = event.pivot
+    if (actual >= pivot):
+        highlow = 1
+    if (actual < pivot):
+        highlow = -1
+
+    return highlow

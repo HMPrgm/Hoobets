@@ -1,5 +1,5 @@
 from helper import close_out_event   
-from app import create_app
+from app import create_app, db
 
 def resolve_event():
     app = create_app()
@@ -8,7 +8,14 @@ def resolve_event():
         name = input('Name: ')
         actual = int(input('Actual: '))
         
-        pivot = Event.query.filter_by(name=name).first().pivot
+        event = Event.query.filter_by(name=name).first()
+        pivot = event.pivot
+
+        event.result = actual
+
+        db.session.add(event)
+        db.session.commit()
+
         if (actual >= pivot):
             highlow = 1
         if (actual < pivot):

@@ -6,13 +6,20 @@ from app import db
 
 @main.route('/getpastbetinfo', methods=['Post'])
 def getpastbetinfo():
-    from helper import sum_tokens
+    from helper import sum_tokens, get_highlow
     from models import Event
+
     data = request.get_json()
     name = data['name']
     
-    tokens = sum_tokens(name, highlow)
-    return tokens
+    event = Event.query.filter_by(name=name)
+
+    actual = event.actual
+    highlow= get_highlow(name)
+    response = sum_tokens(name, highlow)
+
+    response['actual'] = actual
+    return response
 
 
 @main.route("/addwager", methods=['Post'])
