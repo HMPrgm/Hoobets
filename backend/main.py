@@ -102,6 +102,7 @@ def getEventJson(event):
     dict['description'] = event.desc
     dict['start'] = event.start
     dict['end'] = event.end
+    dict['pivot'] = event.pivot
     return dict
 
 def getOptionJson(option): # convert an event into appropriate json

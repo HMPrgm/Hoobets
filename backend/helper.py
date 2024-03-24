@@ -10,9 +10,9 @@ def add_user(username, password, email):
         db.session.add(user)
         db.session.commit()
 
-def add_event(name, desc, end, creator_id):
+def add_event(name, desc, end, creator_id, pivot):
     with app.app_context():
-        event = Event(name = name, desc = desc, start = datetime.now, end = end, active = True, creator_id = creator_id)
+        event = Event(name = name, desc = desc, start = datetime.now, end = end, active = True, creator_id = creator_id, pivot=pivot)
         db.session.add(event)
         db.session.commit()
 
@@ -75,5 +75,4 @@ def close_out_event(event_name, winning_option_desc):
         return total_losing_credits
 
 if __name__ == '__main__':
-    add_wager(1, 100, 1, 2)
-
+    add_wager(1, 100, 1, 1)

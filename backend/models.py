@@ -12,6 +12,7 @@ class User(db.Model, UserMixin):
 
     events = db.relationship('Event', backref='user')
     wagers = db.relationship('Wager', backref='user')
+    __table_args__ = {'extend_existing': True}
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -19,12 +20,15 @@ class Event(db.Model):
     desc = db.Column(db.String(80), unique=True, nullable=False)
     start = db.Column(db.DateTime)
     end = db.Column(db.DateTime)
+    pivot = db.Column(db.Integer)
+
     active = db.Column(db.Boolean)
     creator_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     wagers = db.relationship('Wager', backref='event')
     options = db.relationship('Option', backref='event')
 
+    __table_args__ = {'extend_existing': True}
 
 class Wager(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -34,11 +38,14 @@ class Wager(db.Model):
     bettor_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     option_id = db.Column(db.Integer, db.ForeignKey('option.id'))
 
+    __table_args__ = {'extend_existing': True}
+
 class Option(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     event_id = db.Column(db.Integer, db.ForeignKey('event.id'))
     desc = db.Column(db.String(100))
     value = db.Column(db.Integer)
+    __table_args__ = {'extend_existing': True}
 
 
 class ChildView(ModelView): # child view for admin page
