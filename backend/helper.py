@@ -53,8 +53,8 @@ def close_out_event(event_name, highlow):
         for wager in wagers:
             # get option
             option = Option.query.filter_by(id=wager.option_id).first()
+            event = Event.query.filter_by(id=wager.event_id).first()
             if option.value == highlow:
-                event = Event.query.filter_by(id=wager.event_id).first()
 
                 if not event.active:
                     print('event inactive')
