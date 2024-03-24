@@ -108,7 +108,13 @@ def sum_tokens(event_name, highlow):
 def get_highlow(event_name, actual):
 
     event = Event.query.filter_by(name=event_name).first()
-
+    if not event:
+        return 
+        {
+            'status':'error',
+            'message':'tried to get past info on active bet'
+        }
+        
     if event.active:
         return {
         'status':'error',

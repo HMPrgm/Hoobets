@@ -13,6 +13,12 @@ def getpastbetinfo():
     name = data['name']
     
     event = Event.query.filter_by(name=name).first()
+    if not name:
+        return {
+            'status':'error',
+            'message':'event not found'
+        }
+    
     if (event.active):
         return {
             'status':'error',
@@ -50,7 +56,7 @@ def addwager():
         option_id = Option.query.filter_by(value=-1).first().id
 
     user = User.query.filter_by(id=current_user.id).first()
-
+    
     #check if user has enough credits
     if (amount > user.credits):
         return {
