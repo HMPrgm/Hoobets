@@ -51,10 +51,42 @@ def close_out_event(event_name, highlow):
         
         print(winning_sum_tokens)
         print(losing_sum_tokens)
-                
-
-
         
+        for wager in wagers:
+            # get option
+            option = Option.query.filter_by(id=wager.option_id).first()
+            if option.value == highlow:
+                event = Event.query.filter_by(id=wager.event_id).first()
+                print(event.active)
 
+                if not event.active:
+                    print('event inactive')
+                    return {
+                        'status':'error',
+                        'message': 'event.active'
+                    }
+                
+                proportion = wager.amount / winning_sum_tokens
+
+                # return original credits
+                user = User.query.filter_by(id=wager.bettor_id).first()
+                user.credits += wager.amount
+
+                # add credits based off proportion of winning pot
+                user.credits += int(losing_sum_tokens * proportion)
+
+                event.active= False
+                db.session.add(user)
+                db.session.add(event)
+
+                db.session.commit()
+            else:
+                # nothing happens, loser loses their bet
+                pass
+
+
+
+
+    
 if __name__ == '__main__':
     close_out_event('a cool event', 1)
