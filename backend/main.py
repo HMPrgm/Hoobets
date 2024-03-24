@@ -99,9 +99,7 @@ def getUser(username):
     for wager in wagers:
         response.append(getWagerJson(wager))
     
-    response.append({
-        "credits": current_user.credits
-    })
+   
     return jsonify(response)
 
 def getWagerJson(wager):
