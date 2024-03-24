@@ -7,6 +7,7 @@ import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Default from './pages/Default';
+import Logout from './pages/Logout';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/" element={<Navbar/>}>
                     <Route index element={ <Home/>} />
                     <Route path="login" element={<Login/>}/>
+                    <Route path="logout" element={<Logout/>}/>
                     <Route path="register" element={<Register/>}/>
                     <Route path="bets/:name" element={<Bet/>}/>
                     <Route path="default" element={<Default/>}/>
