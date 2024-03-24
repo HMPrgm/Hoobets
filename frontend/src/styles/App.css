@@ -22,9 +22,13 @@ nav{
 }
 
 .card {
-  background-color: whitesmoke;
+  background-color:rgba(232, 232, 240,.5);
+  
 }
 
+.nav-link {
+  font-size: 15pt;
+}
 .bet-group {
   margin: 1rem;
   padding: 1rem;
