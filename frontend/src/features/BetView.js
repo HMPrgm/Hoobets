@@ -2,7 +2,7 @@
 const BetView = ({ bet, typeBet, betAmount, handleBetChange, handlePlaceBet, placedBet}) => {
     return (
 
-        <div className="container">
+        <div className="container ">
           <div className="row">
             <div className="col"></div>
             <div className="col-6  m-5">

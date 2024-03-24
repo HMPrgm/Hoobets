@@ -75,11 +75,14 @@ const Home = ({ loggedIn }) => {
 
 
             <>
+            {
+                    oldBets.length ? <h1 className="m-5 p-2 text-center">Active Bets</h1> : ""
+                }
                 {newBets.map((bet, i) => (
                     <BetPreview bet={bet} loggedIn={loggedIn} />
                 ))}
                 {
-                    oldBets.length ? <h2 className="p-2">Past Bets</h2> : ""
+                    oldBets.length ? <h2 className="p-2 text-center">Past Bets</h2> : ""
                 }
                 {oldBets.map((bet, i) => (
                     <BetPreview bet={bet} loggedIn={loggedIn} />

@@ -13,15 +13,21 @@ const BetPreview = ({ bet, loggedIn }) => {
         //         <div className="bet-element-btn bet-element-element"><a href={"/bets/" + bet.name}>Bet</a></div>
         //     </div>
         // </div>
-        <div className="card" style={{borderRadius:0}}>
-            <div className="card-body">
-                <h5 className="card-title">{bet.name}</h5>
-                <p className="card-text">{bet.description}</p>
-                <p className="card-text"><strong>Start Date:</strong> {new Date(bet.start).toLocaleString()}</p>
-                <p className="card-text"><strong>End Date:</strong> {new Date(bet.end).toLocaleString()}</p>
-                { loggedIn ?
-                <p className="card-text"><a className="btn btn-dark btn-lg" href={"/bets/" + bet.name}>{bet.active ? 'Bet': 'Results'}</a></p> : ""
-}
+        <div class="container">
+            <div class="row">
+                <div className="col "></div>
+                <div className="card m-5 col-lg-8" style={{ borderRadius: 0 }}>
+                    <div className="card-body">
+                        <h2 className="card-title text-center">{bet.name}</h2>
+                        <p className="card-text text-center text-muted">{bet.description}</p>
+                        <p className="card-text text-center"><strong>Start Date:</strong> {new Date(bet.start).toLocaleString()}</p>
+                        <p className="card-text text-center"><strong>End Date:</strong> {new Date(bet.end).toLocaleString()}</p>
+                        {loggedIn ?
+                            <p className="card-text text-center"><a className="btn btn-dark btn-lg" href={"/bets/" + bet.name}>{bet.active ? 'Bet' : 'Results'}</a></p> : ""
+                        }
+                    </div>
+                </div>
+                <div className="col"></div>
             </div>
         </div>
     )
