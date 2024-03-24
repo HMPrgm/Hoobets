@@ -1,6 +1,6 @@
 from app import db, create_app
 from models import User, Event, Wager, Option
-from datetime import datetime
+from datetime import datetime, timedelta
 NEW_CREDITS = 50
 app = create_app()
 
@@ -12,7 +12,7 @@ def add_user(username, password, email):
 
 def add_event(name, desc, creator_id, pivot):
     with app.app_context():
-        event = Event(name = name, desc = desc, active = True, creator_id = creator_id, pivot=pivot)
+        event = Event(name = name, desc = desc, active = True, creator_id = creator_id, pivot=pivot, start=datetime.now(), end=datetime.now()+timedelta(1))
         id = event.id
         db.session.add(event)
 
