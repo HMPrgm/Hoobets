@@ -90,18 +90,23 @@ def getWagerScreen(bet_title):
 
     from models import Event
     event = Event.query.filter_by(name=bet_title).first() # get corresponding event
-    if (event):
-        response = getEventJson(event)
+    if (not event):
+        return {
+            "status":"error",
+            "message":"event not found"
+        }
     
-    from models import Option
-    options = Option.query.filter_by(event_id=event.id).all() # get corresponding options
+    response = getEventJson(event)
+    
+    # from models import Option
+    # options = Option.query.filter_by(event_id=event.id).all() # get corresponding options
 
-    optionsJson = []
-    for option in options:
-        optionsJson.append(getOptionJson(option))
+    # optionsJson = []
+    # for option in options:
+    #     optionsJson.append(getOptionJson(option))
     
     
-    response['options'] = optionsJson
+    # response['options'] = optionsJson
     response['status'] = 'ok'
     return jsonify(response)
 
@@ -149,7 +154,7 @@ def getWagerJson(wager):
     from models import Event, Option
     dict = {}
     event_id = wager.event_id
-    print(wager)
+    print(wager.event_id)
     print(event_id)
     event = Event.query.filter_by(id = event_id).first()
 
