@@ -42,7 +42,6 @@ const Bet = ({handleLoggedIn, credits}) => {
         console.error(e)
       })
   };
-
   return (
 
     <div className="container">
@@ -55,6 +54,8 @@ const Bet = ({handleLoggedIn, credits}) => {
               <p className="card-text text-muted">{bet.description}</p>
               
               <p className="card-text fs-4 text-center">Number to beat: <span className=" fw-bold">{bet.pivot}</span></p>
+              {bet.active?
+              <>
               <div className="form-group p-3">
               <div className="row">
               <label className="form-label col-sm-3 text-center p-1">Bet Tokens: </label>
@@ -73,6 +74,8 @@ const Bet = ({handleLoggedIn, credits}) => {
                 <button className="btn btn-lg btn-success" onClick={handlePlaceBet}>Higher</button>
                 <button className="btn btn-lg btn-danger" onClick={handlePlaceBet}>Lower</button>
               </div>
+              </>:""
+            }
             </div>
           </div>
         </div>
