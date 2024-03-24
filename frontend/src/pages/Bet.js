@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import { useParams } from "react-router-dom";
 
-const Bet = ({handleLoggedIn, credits}) => {
+const Bet = ({ handleLoggedIn, credits }) => {
   const [bet, setBet] = React.useState(0)
   const [betAmount, setBetAmount] = React.useState('')
   const { name } = useParams()
@@ -25,16 +25,16 @@ const Bet = ({handleLoggedIn, credits}) => {
   const handleBetChange = (e) => {
     // Place bet logic here
     setBetAmount(Math.min(Math.max(parseInt(e.target.value), 1)), credits);
-    
+
   };
   const handlePlaceBet = (e) => {
     // Place bet logic here
     axios.post(`/addwager`, {
-      "highlow": e.target.innerText === "Lower" ? -1:1,
-      "name":name,
-      "amount":betAmount
+      "highlow": e.target.innerText === "Lower" ? -1 : 1,
+      "name": name,
+      "amount": betAmount
     })
-    .then(res => {
+      .then(res => {
         handleLoggedIn()
         console.log(res.data)
       })
@@ -51,31 +51,31 @@ const Bet = ({handleLoggedIn, credits}) => {
           <div className="card">
             <div className="card-body">
               <h2 className="card-title text-center fs-2">{bet.name}</h2>
-              <p className="card-text text-muted">{bet.description}</p>
-              
-              <p className="card-text fs-4 text-center">Number to beat: <span className=" fw-bold">{bet.pivot}</span></p>
-              {bet.active?
-              <>
-              <div className="form-group p-3">
-              <div className="row">
-              <label className="form-label col-sm-3 text-center p-1">Bet Tokens: </label>
-              <div className="col-lg-8">
-                <input
-                  type="number"
-                  className="form-control"
-                  placeholder="Enter your bet amount"
-                  value={betAmount}
-                  onChange={handleBetChange}
-                />
-              </div>
-              </div>
-              </div>
-              <div className="text-center d-flex justify-content-around">
-                <button className="btn btn-lg btn-success" onClick={handlePlaceBet}>Higher</button>
-                <button className="btn btn-lg btn-danger" onClick={handlePlaceBet}>Lower</button>
-              </div>
-              </>:""
-            }
+              <p className="card-text text-muted text-center">{bet.description}</p>
+
+              <p className="card-text fs-4 text-center">Higher or Lower: <span className=" fw-bold">{bet.pivot}</span></p>
+              {bet.active ?
+                <>
+                  <div className="form-group p-3">
+                    <div className="row">
+                      <label className="form-label col-sm-3 text-center p-1">Bet Tokens: </label>
+                      <div className="col-lg-8">
+                        <input
+                          type="number"
+                          className="form-control"
+                          placeholder="Enter your bet amount"
+                          value={betAmount}
+                          onChange={handleBetChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center d-flex justify-content-around">
+                    <button className="btn btn-lg btn-success" onClick={handlePlaceBet}>Higher</button>
+                    <button className="btn btn-lg btn-danger" onClick={handlePlaceBet}>Lower</button>
+                  </div>
+                </> : ""
+              }
             </div>
           </div>
         </div>
