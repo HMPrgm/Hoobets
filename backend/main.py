@@ -12,18 +12,19 @@ def getpastbetinfo():
     data = request.get_json()
     name = data['name']
     
-    event = Event.query.filter_by(name=name)
+    event = Event.query.filter_by(name=name).first()
     if (event.active):
         return {
             'status':'error',
             'message':'tried to get past info on active bet'
         }
     
-    actual = event.actual
-    highlow= get_highlow(name)
+    actual = event.result
+    highlow= get_highlow(name, actual)
     response = sum_tokens(name, highlow)
 
     response['actual'] = actual
+    response['highlow'] = highlow
     return response
 
 
