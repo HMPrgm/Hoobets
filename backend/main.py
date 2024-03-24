@@ -53,6 +53,45 @@ def getEvents():
     response.append({'status':'ok'}) # add ok status
     return jsonify(response)
 
+@main.route("/profile/<username>")
+def getUser(username):
+    from models import User, Wager
+    user = User.query.filter_by(username=username).first()
+    response = []
+
+    if not user:
+        return {
+            'status':'error',
+            'message':'user does not exist'
+        }
+    
+    wagers = Wager.query.filter_by(bettor_id = user.id)
+    for wager in wagers:
+        response.append(getWagerJson(wager))
+    
+    return jsonify(response)
+
+def getWagerJson(wager):
+    from models import Event, Option
+    dict = {}
+    event_id = wager.event_id
+    event = Event.query.filter_by(event_id = event.id).first()
+
+    option_id = wager.option_id
+    option = Option.query.filter_by(option_id = option.id).first()
+
+    dict['option'] = getOptionJson(option)
+    dict['event'] = getEventJson(event)
+    dict['amount'] = wager.amount
+    return dict
+
+def getUserJson(user):
+    dict = {}
+    dict['username'] = user.username
+    dict['email'] = user.email
+    dict['credits'] = user.credits
+
+
 def getEventJson(event):
     dict = {}
     dict['id'] = event.id
