@@ -85,7 +85,7 @@ const Home = ({ loggedIn }) => {
                     oldBets.length ? <h2 className="p-2 text-center">Past Bets</h2> : ""
                 }
                 {oldBets.map((bet, i) => (
-                    <BetPreview bet={bet} loggedIn={loggedIn} />
+                    <BetPreview bet={bet} loggedIn={true} />
                 ))}
             </>
 
