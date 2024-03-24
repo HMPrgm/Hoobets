@@ -91,7 +91,7 @@ const Bet = ({ handleLoggedIn, credits, username }) => {
                     </div>
                   </>) : (true ?
                     <>
-                      <p className="card-text fs-4 text-center">Higher! <span className=" fw-bold">{bet.pivot}</span></p>
+                      <p className="card-text fs-4 text-center">{bet.highlow === 1 ? "Higher":"Lower"} <span className=" fw-bold">{bet.actual}</span></p>
                     </>
                     : "")
               }
