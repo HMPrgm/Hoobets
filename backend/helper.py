@@ -32,11 +32,29 @@ def add_option(event_id, desc, value):
         db.session.commit()
 
 def close_out_event(event_name, highlow):
-    # sum up winning credits
-    winning_wagers = Wager.query.filter_by()
-    #sum up losing credits
+    with app.app_context():
+
+        # get all wagers for the bet
+        event_id = Event.query.filter_by(name=event_name).first().id
+        wagers = Wager.query.filter_by(event_id=event_id).all()
+
+        winning_sum_tokens = 0
+        losing_sum_tokens = 0
+
+        for wager in wagers:
+            # get option
+            option = Option.query.filter_by(id=wager.option_id).first()
+            if option.value == highlow:
+                winning_sum_tokens += wager.amount
+            else:
+                losing_sum_tokens += wager.amount
+        
+        print(winning_sum_tokens)
+        print(losing_sum_tokens)
+                
+
 
         
 
 if __name__ == '__main__':
-    add_wager(1, 100, 1, 1)
+    close_out_event('a cool event', 1)

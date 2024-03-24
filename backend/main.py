@@ -81,6 +81,7 @@ def getEvents():
     response.append({'status':'ok'}) # add ok status
     return jsonify(response)
 
+
 @main.route("/profile/<username>")
 def getUser(username):
     print(username)
@@ -122,7 +123,6 @@ def getUserJson(user):
     dict = {}
     dict['username'] = user.username
     dict['email'] = user.email
-    dict['credits'] = user.credits
 
 
 def getEventJson(event):

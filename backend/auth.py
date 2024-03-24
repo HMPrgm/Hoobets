@@ -106,7 +106,8 @@ def isloggedin():
     if current_user.is_authenticated:
         return {
         'isloggedin': 1 if current_user.is_authenticated else 0,
-        "name": current_user.username
+        "name": current_user.username,
+        "credits": current_user.credits
         }
     else:
         return {
