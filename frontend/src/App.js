@@ -50,7 +50,7 @@ function App() {
                     <Route path="login" element={<Login handleLoggedIn={HandleLoggedIn}/>}/>
                     <Route path="logout" element={<Logout handleLoggedIn={HandleLoggedIn}/>}/>
                     <Route path="register" element={<Register handleLoggedIn={HandleLoggedIn}/>}/>
-                    <Route path="bets/:name" element={<Bet credits={credits} handleLoggedIn={HandleLoggedIn}/>}/>
+                    <Route path="bets/:name" element={<Bet credits={credits} handleLoggedIn={HandleLoggedIn} username={username}/>}/>
                     <Route path="default" element={<Default/>}/>
                     <Route path="profile/:username" element={<Profile credits={credits}/>}/>
                     
