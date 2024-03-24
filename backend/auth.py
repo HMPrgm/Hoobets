@@ -98,7 +98,15 @@ def signup_post():
     }
     return jsonify(response)
 
-@auth.route('/logout', methods=['Post'])
+@auth.route('/isloggedin')
+def isloggedin():
+    from models import User
+    print((current_user.is_authenticated))
+    return {
+        'isloggedin': 1 if current_user.is_authenticated else 0
+    }
+
+@auth.route('/logout', methods=['Post', 'Get'])
 @login_required
 def logout():
     logout_user()
