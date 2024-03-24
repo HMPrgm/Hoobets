@@ -1,23 +1,32 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
-main = Blueprint('auth', __name__)
+main = Blueprint('main', __name__)
 
 
 
-@login_required
 @main.route("/addwager", methods=['Post'])
 def addwager():
     from models import Event, Option
-    data = request.get_json
+    data = request.get_json()
     name = data['name']
     highlow = data['highlow']
     amount = data['amount']
-    event_id = Event.query.filter(name = name).first().id
+    event_id = Event.query.filter_by(name=name).first().id
+    print(highlow)
 
-    option_id = Option.query.filter(event_id=event_id, value=highlow)
+    if highlow == 1 :
+        option_id = Option.query.filter_by(value=1).first().id
+    else: 
+        option_id = Option.query.filter_by(value=-1).first().id
 
+    print(option_id)
+    
     from helper import add_wager
     add_wager(bettor_id=current_user.id, amount=amount, option_id=option_id, bet_id=event_id)
+
+    return {
+        'hi':'hi'
+    }
 
 @login_required
 @main.route("/addevent", methods=['Post']) #adds an event 
