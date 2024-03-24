@@ -3,7 +3,8 @@ import axios from 'axios'
 import { useParams } from "react-router-dom";
 
 const Bet = () => {
-  const [bet, setBet] = React.useState('')
+  const [bet, setBet] = React.useState(0)
+  const [betAmount, setBetAmount] = React.useState('')
   const { name } = useParams()
   useEffect(() => {
 
@@ -21,31 +22,57 @@ const Bet = () => {
   //   setBet(parseInt(e.target.value));
   // };
 
-  const handlePlaceBet = () => {
+  const handleBetChange = (e) => {
     // Place bet logic here
-    // console.log(`Placing bet of ${bet} on ${betInfo.title}`);
+    setBetAmount(Math.max(parseInt(e.target.value), 0));
+    
+  };
+  const handlePlaceBet = (e) => {
+    // Place bet logic here
+    axios.post(`/addwager`, {
+      "highlow": e.target.innerText === "Lower" ? -1:1,
+      "name":name,
+      "amount":20
+    })
+      .then(res => {
+        console.log(res.data)
+      })
+      .catch(e => {
+        console.error(e)
+      })
   };
 
   return (
 
-    <div className="container d-flex justify-content-center">
-    <div className="card">
-      <div className="card-body">
-        <h2 className="card-title">{bet.name}</h2>
-        <p className="card-text">Description: {bet.description}</p>
-        <p className="card-text">Odds: {bet.id}</p>
-        <p className="card-text">Minimum Bet: {bet.id}</p>
-        <p className="card-text">Maximum Bet: {bet.id}</p>
-        <div className="form-group">
-          <input
-            type="number"
-            className="form-control"
-            placeholder="Enter your bet amount"
-          />
+    <div className="container">
+      <div className="row">
+        <div className="col"></div>
+        <div className="col-6">
+          <div className="card">
+            <div className="card-body">
+              <h2 className="card-title text-center">{bet.name}</h2>
+              <p className="card-text">{bet.description}</p>
+              <div className="text-center">
+                s
+              </div>
+              <p className="card-text">Odds: {bet.id}</p>
+              <div className="form-group">
+                <input
+                  type="number"
+                  className="form-control"
+                  placeholder="Enter your bet amount"
+                  value={betAmount}
+                  onChange={handleBetChange}
+                />
+              </div>
+              <button className="btn btn-success" onClick={handlePlaceBet}>Higher</button>
+              <button className="btn btn-warning" onClick={handlePlaceBet}>Lower</button>
+            </div>
+          </div>
         </div>
-        <button className="btn" onClick={handlePlaceBet}>Place Bet</button>
+        <div className="col"></div>
+
       </div>
-    </div>
     </div>
   );
 };
