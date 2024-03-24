@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 
-const Profile = () => {
+const Profile = ({credits}) => {
 
   const [bets, setBet] = useState('')
 
@@ -21,14 +21,14 @@ const Profile = () => {
   }, [username]);
   let betsActive = []
   let betsInActive = []
-  for (let bet of bets) {
-    if (bet.event.active)
+  for (let i = 0; i < bets.length; i++) {
+    if (bets[i].event.active)
     {
-      betsActive.push(bet)
+      betsActive.unshift(bets[i])
     }
     else
     {
-      betsInActive.push(bet)
+      betsInActive.unshift(bets[i])
     }
   }
   
@@ -38,8 +38,10 @@ const Profile = () => {
         <div className="row">
         <div className="col"></div>
           <div className="col-6">
-            <h1>Welcome, {username}!</h1>
-            <h2>Your Bets</h2>
+            <h1 className='text-center p-3'>Welcome, {username}!</h1>
+            <h2 className='text-center text-muted'>Credits: {credits}</h2>
+            {bets.length ? <h2>Your Bets</h2>: ""}
+            
             <ul className="list-group">
             {betsActive.length ? <h3 className='text-muted fw-normal' style={{fontSize: '1.1em'}}>Active Bets</h3>: ""}
               {betsActive.map((bet, index) => (
