@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const BetResult = ({ bet, bet2 }) => {
     return (
@@ -14,7 +15,7 @@ const BetResult = ({ bet, bet2 }) => {
                             <p className="card-text text-center"> Total Winners: <span className=" fw-bold">{bet2.winning}</span></p> 
                             <p className="card-text text-center"> Total Losers: <span className=" fw-bold">{bet2.losing}</span></p>
                             <div className="btn btn-dark card-text text-center d-flex align-items-center justify-content-center">
-                                <a className="nav-link" href="/">Back Home</a>
+                                <Link to="/" className="nav-link">Back Home</Link>
                             </div>
                         </div>
                     </div>

@@ -54,7 +54,7 @@ const Bet = ({ handleLoggedIn, credits, username }) => {
     }
     else if (e.target.value<= 0)
     {
-      setBetAmount(1)
+      setBetAmount(0)
     }
     else {
       setBetAmount(parseInt(e.target.value));
@@ -67,6 +67,10 @@ const Bet = ({ handleLoggedIn, credits, username }) => {
   };
   const handlePlaceBet = (e) => {
     // Place bet logic here
+    if (credits === 0)
+    {
+      return;
+    }
     axios.post(`/addwager`, {
       "highlow": e.target.innerText === "Lower" ? -1 : 1,
       "name": name,
