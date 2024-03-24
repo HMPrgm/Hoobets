@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import re
 import json
 
-auth = Blueprint('main', __name__)
+auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['Post']) # the login method
 def login_post():
@@ -102,7 +102,7 @@ def signup_post():
 def isloggedin():
     from models import User
     print((current_user.is_authenticated))
-    
+
     if current_user.is_authenticated:
         return {
         'isloggedin': 1 if current_user.is_authenticated else 0,
