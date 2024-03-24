@@ -5,26 +5,49 @@ import { useParams } from "react-router-dom";
 const Bet = () => {
   const [bet, setBet] = React.useState('')
   const { name } = useParams()
+  useEffect(() => {
 
-  axios.get(`/bets/${name}`)
-    .then(res => {
-      setBet(res.data)
-    })
-    .catch(e => {
-      console.error(e)
-    })
+    axios.get(`/bets/${name}`)
+      .then(res => {
+        setBet(res.data)
+      })
+      .catch(e => {
+        console.error(e)
+      })
+  }, [name]);
 
+
+  // const handleBetChange = (e) => {
+  //   setBet(parseInt(e.target.value));
+  // };
+
+  const handlePlaceBet = () => {
+    // Place bet logic here
+    // console.log(`Placing bet of ${bet} on ${betInfo.title}`);
+  };
 
   return (
-    <div className="card mt-4">
+
+    <div className="container d-flex justify-content-center">
+    <div className="card">
       <div className="card-body">
-        <h5 className="card-title">{bet.name}</h5>
-        <p className="card-text">{bet.description}</p>
-        <p className="card-text"><strong>Start Time:</strong> {new Date(bet.start).toLocaleString()}</p>
-        <p className="card-text"><strong>End Time:</strong> {new Date(bet.end).toLocaleString()}</p>
+        <h2 className="card-title">{bet.name}</h2>
+        <p className="card-text">Description: {bet.description}</p>
+        <p className="card-text">Odds: {bet.id}</p>
+        <p className="card-text">Minimum Bet: {bet.id}</p>
+        <p className="card-text">Maximum Bet: {bet.id}</p>
+        <div className="form-group">
+          <input
+            type="number"
+            className="form-control"
+            placeholder="Enter your bet amount"
+          />
+        </div>
+        <button className="btn" onClick={handlePlaceBet}>Place Bet</button>
       </div>
     </div>
-  )
+    </div>
+  );
 };
 
 export default Bet;
