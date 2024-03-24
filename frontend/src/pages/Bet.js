@@ -66,7 +66,7 @@ const Bet = ({ handleLoggedIn, credits, username }) => {
                   <>
                     <p className="card-text fs-4 text-center">Placed <span className=" fw-bold">{betAmount}</span> credit bet for <span className=" fw-bold">{typeBet}</span></p>
                     <div className="btn btn-dark card-text text-center d-flex align-items-center justify-content-center">
-                      <Link to="/" className="nav-link">Back Home</Link>
+                      <a className="nav-link" href="/">Back Home</a>
                     </div>
                   </>
                   :
