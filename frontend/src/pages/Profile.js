@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 const Profile = () => {
 
   const [username, setUsername] = useState('')
@@ -22,6 +23,5 @@ const Profile = () => {
       </div>
     </div>
   );
-};
-
+}
 export default Profile;
