@@ -18,7 +18,7 @@ def add_event(name, desc, end, creator_id):
 
 def add_wager(bettor_id, amount, option_id, bet_id):
     with app.app_context():
-        wager = Wager(bettor_id = bettor_id, amount = amount, option_id = option_id, bet_id = bet_id)
+        wager = Wager(bettor_id = bettor_id, amount = amount, option_id = option_id, event_id = bet_id)
         db.session.add(wager)
         db.session.commit()
 
@@ -75,5 +75,5 @@ def close_out_event(event_name, winning_option_desc):
         return total_losing_credits
 
 if __name__ == '__main__':
-    add_option(2, "desc3", 123)
+    add_wager(1, 100, 1, 2)
 

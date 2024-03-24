@@ -75,10 +75,11 @@ def getWagerJson(wager):
     from models import Event, Option
     dict = {}
     event_id = wager.event_id
-    event = Event.query.filter_by(event_id = event.id).first()
+    print(event_id)
+    event = Event.query.filter_by(id = event_id).first()
 
     option_id = wager.option_id
-    option = Option.query.filter_by(option_id = option.id).first()
+    option = Option.query.filter_by(id = option_id).first()
 
     dict['option'] = getOptionJson(option)
     dict['event'] = getEventJson(event)
