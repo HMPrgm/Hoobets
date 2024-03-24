@@ -35,7 +35,9 @@ def close_out_event(event_name, highlow):
     with app.app_context():
 
         # get all wagers for the bet
-        event_id = Event.query.filter_by(name=event_name).first().id
+        event = Event.query.filter_by(name=event_name).first()
+        event_id = event.id
+        
         wagers = Wager.query.filter_by(event_id=event_id).all()
 
         winning_sum_tokens = 0
@@ -49,12 +51,11 @@ def close_out_event(event_name, highlow):
             else:
                 losing_sum_tokens += wager.amount
         
-        
         for wager in wagers:
+            event = Event.query.filter_by(id=wager.event_id).first()
             # get option
             option = Option.query.filter_by(id=wager.option_id).first()
             if option.value == highlow:
-                event = Event.query.filter_by(id=wager.event_id).first()
 
                 if not event.active:
                     print('event inactive')

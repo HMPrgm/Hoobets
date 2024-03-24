@@ -6,8 +6,8 @@ const Navbar = ({isLoggedIn, username, handleLoggedIn, credits}) => {
   
   return (
     <>
-      <nav className="p-3 navbar navbar-expand-lg navbar-light bg-light justify-content-between">
-        <a className="navbar-brand" href="/">HooBets</a>
+      <nav className="p-3 navbar navbar-expand-lg navbar-light justify-content-between nav">
+        <a className="text-primary-1" href="/">HooBets</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
