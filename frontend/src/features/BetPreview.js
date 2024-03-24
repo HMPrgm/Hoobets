@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/BetPreview.css'
 
-const BetPreview = ({ bet }) => {
+const BetPreview = ({ bet, loggedIn }) => {
     return (
         // <div className="bet-main"> 
         //     <div className="bet-element" >
@@ -19,7 +19,9 @@ const BetPreview = ({ bet }) => {
                 <p className="card-text">{bet.description}</p>
                 <p className="card-text"><strong>Start Date:</strong> {new Date(bet.start).toLocaleString()}</p>
                 <p className="card-text"><strong>End Date:</strong> {new Date(bet.end).toLocaleString()}</p>
-                <p className="card-text"><a className="btn" href={"/bets/" + bet.name}>Bet</a></p>
+                { loggedIn ?
+                <p className="card-text"><a className="btn" href={"/bets/" + bet.name}>Bet</a></p> : ""
+}
             </div>
         </div>
     )

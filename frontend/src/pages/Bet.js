@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useParams } from "react-router-dom";
 
 const Bet = ({ handleLoggedIn, credits }) => {
+  
   const [bet, setBet] = React.useState(0)
   const [betAmount, setBetAmount] = React.useState('')
   const { name } = useParams()

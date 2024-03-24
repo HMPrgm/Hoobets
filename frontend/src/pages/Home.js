@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import BetPreview from "../features/BetPreview";
 
-const Home = () => {
+const Home = ({loggedIn}) => {
     const [bets, setBets] = useState('');
 
     useEffect(() => {
@@ -59,19 +59,29 @@ const Home = () => {
 
     try {
         let newBets = [];
+        let oldBets = [];
         for (let bet of bets) {
+            console.log(bet)
             if (bet.active) {
                 newBets.push(bet)
+            }
+            else
+            {
+                oldBets.push(bet)
             }
         }
         return (
 
 
-
-            newBets.map((bet, i) => (
-                <BetPreview bet={bet} />
-            ))
-
+            <>
+            {newBets.map((bet, i) => (
+                <BetPreview bet={bet} loggedIn={loggedIn}/>
+            ))}
+            <h2>Past Bets</h2>
+            {oldBets.map((bet, i) => (
+                <BetPreview bet={bet} loggedIn={loggedIn}/>
+            ))}
+            </>
 
 
         )
