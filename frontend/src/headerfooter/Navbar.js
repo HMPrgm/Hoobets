@@ -13,9 +13,15 @@ const Navbar = ({isLoggedIn, handleLoggedIn}) => {
         </button>
         <ul class="navbar-nav nav-light">
           {isLoggedIn ?
+          <>
             <li class="nav-item active">
               <Link to="/logout" className="nav-link">Logout</Link>
             </li>
+            <li>
+              <Link to="/profile" className="nav-link">Profile</Link>
+            </li>
+            </>
+
             :
             <>
               <li class="nav-item active">
