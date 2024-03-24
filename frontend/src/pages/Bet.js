@@ -34,7 +34,8 @@ const Bet = ({handleLoggedIn, credits}) => {
       "name":name,
       "amount":betAmount
     })
-      .then(res => {
+    .then(res => {
+        handleLoggedIn()
         console.log(res.data)
       })
       .catch(e => {
